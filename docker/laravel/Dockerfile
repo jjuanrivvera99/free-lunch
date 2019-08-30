@@ -30,6 +30,7 @@ RUN apt-get update -yqq && apt-get install -yq --no-install-recommends \
     libaio1 \
     libaio-dev \
     # Install tools
+    nano \
     openssl \
     curl \
     iputils-ping \
@@ -52,7 +53,7 @@ RUN phpenmod my-site
 
 # Configure apache for My Site
 RUN a2enmod headers rewrite expires && \
-    echo "ServerName localhost" | tee /etc/apache2/conf-available/servername.conf && \
+    echo "ServerName feliperivera99.eastus.cloudapp.azure.com" | tee /etc/apache2/conf-available/servername.conf && \
     a2enconf servername
 
 # Configure vhost for My Site
