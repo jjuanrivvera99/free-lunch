@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use URL;
+use SEO;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,6 @@ class HomeController extends Controller
     {
         SEO::opengraph()->setUrl(URL::current());
         
-        return view('home');
+        return view('metronic');
     }
 }
