@@ -37,8 +37,11 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: "juan.rivera@alegra.com"
       PGADMIN_DEFAULT_PASSWORD: "PgAdmin2019!"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
     ports:
       - 8080:80
 
 volumes:
   pgdata:
+  pgadmin:

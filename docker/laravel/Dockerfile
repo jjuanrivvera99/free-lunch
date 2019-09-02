@@ -69,6 +69,12 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get install -y nodejs
 
+# Copy helpers binaries
+RUN mkdir /tmp/bin
+COPY /bin/* /tmp/bin/
+RUN chmod +x /tmp/bin/*
+RUN mv /tmp/bin/* /bin/
+
 EXPOSE 80 443
 
 WORKDIR /var/www/

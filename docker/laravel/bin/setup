@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cp /var/www/.env.example /var/www/.env
+composer install -d /var/www/
