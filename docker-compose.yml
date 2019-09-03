@@ -5,6 +5,8 @@ services:
     container_name: laravel
     image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
     restart: always
+    depends_on:
+      - redis
     build:
       context: ./docker/laravel
     ports:
@@ -15,6 +17,8 @@ services:
   queue:
     container_name: queue
     restart: always
+    depends_on:
+      - redis
     image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
     environment:
       CONTAINER_ROLE: "queue"
@@ -24,6 +28,8 @@ services:
   scheduler:
     container_name: scheduler
     restart: always
+    depends_on:
+      - redis
     image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
     environment:
       CONTAINER_ROLE: "scheduler"
