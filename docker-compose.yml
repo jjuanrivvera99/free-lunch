@@ -4,6 +4,7 @@ services:
   web:
     container_name: laravel
     image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
+    restart: always
     build:
       context: ./docker/laravel
     ports:
@@ -34,6 +35,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
+    restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: "juan.rivera@alegra.com"
       PGADMIN_DEFAULT_PASSWORD: "PgAdmin2019!"
