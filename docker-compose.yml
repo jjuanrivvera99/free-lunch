@@ -12,6 +12,24 @@ services:
     volumes:
       - ./core:/var/www
 
+  queue:
+    container_name: queue
+    restart: always
+    image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
+    environment:
+      CONTAINER_ROLE: "queue"
+    volumes:
+      - "./core:/var/www/"
+
+  scheduler:
+    container_name: scheduler
+    restart: always
+    image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
+    environment:
+      CONTAINER_ROLE: "scheduler"
+    volumes:
+      - "./core:/var/www/"
+
   redis:
     container_name: redis
     image: redis

@@ -79,4 +79,4 @@ EXPOSE 80 443
 
 WORKDIR /var/www/
 
-CMD apachectl -D FOREGROUND
+CMD startup
