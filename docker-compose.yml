@@ -36,6 +36,19 @@ services:
     volumes:
       - "./core:/var/www/"
 
+  socket-io:
+    container_name: socket-io
+    restart: always
+    depends_on:
+      - redis
+    image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
+    ports:
+      - 8081:8081
+    environment:
+      CONTAINER_ROLE: "socket.io"
+    volumes:
+      - "./core:/var/www/"
+
   redis:
     container_name: redis
     image: redis

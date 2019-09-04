@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use URL;
 use SEO;
+use App\Jobs\TestJobs;
+use App\Events\TestEvent;
 
 class HomeController extends Controller
 {
@@ -26,7 +28,10 @@ class HomeController extends Controller
     public function index()
     {
         SEO::opengraph()->setUrl(URL::current());
-        
+
+        TestJobs::dispatch()->delay(now()->addMinutes(1));
+        event(new TestEvent(1, ["Hi"]));
+
         return view('metronic');
     }
 }

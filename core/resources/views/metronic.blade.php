@@ -3557,7 +3557,8 @@
 		<!--end:: Global Optional Vendors -->
 
 		<!--begin::Global Theme Bundle(used by all pages) -->
-		<script src="./assets/js/demo10/scripts.bundle.js" type="text/javascript"></script>
+        <script src="./assets/js/demo10/scripts.bundle.js" type="text/javascript"></script>
+        <script src="/js/socket.js"></script>
 
 		<!--end::Global Theme Bundle -->
 

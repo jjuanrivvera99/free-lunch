@@ -13,6 +13,12 @@ elif [ "$role" = "queue" ]; then
     echo "Running the queue..."
     php /var/www/artisan queue:work redis --verbose --tries=3 --timeout=90
 
+elif [ "$role" = "socket.io" ]; then
+
+    echo "Running the socket.io server..."
+    node --version | npm install
+    node resources/js/socketio.js
+
 elif [ "$role" = "scheduler" ]; then
 
     while [ true ]
