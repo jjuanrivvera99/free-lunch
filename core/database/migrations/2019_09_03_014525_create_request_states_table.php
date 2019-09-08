@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlateIngredientsTable extends Migration
+class CreateRequestStatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreatePlateIngredientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('plate_ingredient', function (Blueprint $table) {
-            $table->bigIncrements('plate_ingredient_id');
-            $table->bigInteger('plate_id');
-            $table->bigInteger('ingredient_id');
-            $table->integer('qty');
+        Schema::create('request_state', function (Blueprint $table) {
+            $table->bigIncrements('request_state_id');
+            $table->string('name', 100);
+            $table->string('description',100);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreatePlateIngredientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plate_ingredient');
+        Schema::dropIfExists('request_state');
     }
 }
