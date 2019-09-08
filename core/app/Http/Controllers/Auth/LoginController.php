@@ -40,7 +40,7 @@ class LoginController extends Controller
         SEO::setTitle('Login Page');
         SEO::setDescription('This is the login page');
 
-        return view('auth.login');
+        return view('auth.login2');
     }
 
     /**
