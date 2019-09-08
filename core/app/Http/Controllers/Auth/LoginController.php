@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use SEO;
+use URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -26,6 +28,20 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        SEO::opengraph()->setUrl(URL::current());
+        SEO::setTitle('Login Page');
+        SEO::setDescription('This is the login page');
+
+        return view('auth.login');
+    }
 
     /**
      * Create a new controller instance.

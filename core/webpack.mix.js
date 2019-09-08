@@ -11,6 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.js('resources/js/login.js', 'public/js/login.js');
+
 mix.js('resources/js/web-socket.js', 'public/js/socket.js');
 
 mix.js(['resources/js/app.js'], 'public/js')
