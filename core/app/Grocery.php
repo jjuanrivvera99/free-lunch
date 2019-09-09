@@ -37,8 +37,8 @@ class Grocery extends Model implements Auditable
      * @var array
      */
     protected $auditInclude = [
-        'name',
-        'description',
+        'ingredient_id',
+        'quantitySold',
     ];
 
     /**
@@ -47,8 +47,8 @@ class Grocery extends Model implements Auditable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'description',
+        'ingredient_id',
+        'quantitySold',
     ];
 
 }
