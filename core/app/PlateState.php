@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class PlateState extends Model
+class PlateState extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     /**
      * The table associated with the model.
      *
@@ -26,6 +29,15 @@ class PlateState extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    /**
+     * Attributes to include in the Audit.
+     *
+     * @var array
+     */
+    protected $auditInclude = [
+        'description',
+    ];
 
     /**
      * The attributes that are mass assignable.

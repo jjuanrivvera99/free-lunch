@@ -3,13 +3,24 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use OwenIt\Auditing\Contracts\Auditable;
 use Caffeinated\Shinobi\Traits\ShinobiTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Auditable
 {
-    use Notifiable, ShinobiTrait;
+    use Notifiable, ShinobiTrait, \OwenIt\Auditing\Auditable;
+
+    /**
+     * Attributes to include in the Audit.
+     *
+     * @var array
+     */
+    protected $auditInclude = [
+        'name',
+        'description',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -37,4 +48,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = true;
 }

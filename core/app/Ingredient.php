@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Ingredient extends Model
+class Ingredient extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     /**
      * The table associated with the model.
      *
@@ -26,6 +29,16 @@ class Ingredient extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    /**
+     * Attributes to include in the Audit.
+     *
+     * @var array
+     */
+    protected $auditInclude = [
+        'name',
+        'description',
+    ];
 
     /**
      * The attributes that are mass assignable.

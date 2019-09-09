@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
+        OwenIt\Auditing\AuditingServiceProvider::class,
 
         /*
          * Application Service Providers...
