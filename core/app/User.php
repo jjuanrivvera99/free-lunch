@@ -55,4 +55,11 @@ class User extends Authenticatable implements Auditable
      * @var bool
      */
     public $timestamps = true;
+
+    /**
+     * Get all user's request
+     */
+    public function requests(){
+        return $this->hasMany('App\Request', 'user_id');
+    }
 }

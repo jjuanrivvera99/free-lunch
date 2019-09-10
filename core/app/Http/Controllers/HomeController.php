@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use URL;
 use SEO;
 use App\Jobs\TestJobs;
-use App\Events\TestEvent;
 
 class HomeController extends Controller
 {
@@ -29,8 +28,8 @@ class HomeController extends Controller
     {
         SEO::opengraph()->setUrl(URL::current());
 
-        TestJobs::dispatch()->delay(now()->addMinutes(1));
-        event(new TestEvent(1, ["Hi"]));
+        // TestJobs::dispatch()->delay(now()->addMinutes(1));
+        
 
         return view('metronic');
     }

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -4882,7 +4882,7 @@ if (typeof WebSocket !== 'undefined') {
   BrowserWebSocket = self.WebSocket || self.MozWebSocket;
 } else {
   try {
-    NodeWebSocket = __webpack_require__(/*! ws */ 2);
+    NodeWebSocket = __webpack_require__(/*! ws */ 3);
   } catch (e) { }
 }
 
@@ -9337,25 +9337,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_0__);
 
-var sock = socket_io_client__WEBPACK_IMPORTED_MODULE_0___default()("http://172.16.101.35:8081");
-$(document).ready(function () {
-  $(".kt-notification").html('');
-});
-
-var notificacion = function notificacion(data) {
-  return "<a href=\"#\" class=\"kt-notification__item\">\n                <div class=\"kt-notification__item-icon\">\n                    <i class=\"flaticon2-line-chart kt-font-success\"></i>\n                </div>\n                <div class=\"kt-notification__item-details\">\n                    <div class=\"kt-notification__item-title\">\n                        ".concat(data.actionData[0], "\n                    </div>\n                    <div class=\"kt-notification__item-time\">\n                        1 second ago\n                    </div>\n                </div>\n            </a>");
-};
-
-sock.on('test-channel-one:App\\Events\\TestEvent', function (data) {
-  //data.actionId and data.actionData hold the data that was broadcast
-  //process the data, add needed functionality here
-  $(".kt-notification").append(notificacion(data));
-  console.log(data);
+console.log(host + ':' + port);
+var sock = socket_io_client__WEBPACK_IMPORTED_MODULE_0___default()(host + ':' + port);
+sock.on('test-channel-one:App\\Events\\NotifyEvent', function (response) {
+  toastr[response.type](response.data);
 });
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!******************************************!*\
   !*** multi ./resources/js/web-socket.js ***!
   \******************************************/
@@ -9367,7 +9357,7 @@ module.exports = __webpack_require__(/*! /var/www/resources/js/web-socket.js */"
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!********************!*\
   !*** ws (ignored) ***!
   \********************/

@@ -10,12 +10,13 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class TestEvent implements ShouldBroadcastNow
+class NotifyEvent implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $actionId;
-    public $actionData;
+    public $userId;
+    public $data;
+    public $type;
 
     /**
      * Create a new event instance.
@@ -24,10 +25,11 @@ class TestEvent implements ShouldBroadcastNow
      *
      * @return void
      */
-    public function __construct($actionId, $actionData)
+    public function __construct($userId, $data, $type = 'info')
     {
-        $this->actionId = $actionId;
-        $this->actionData = $actionData;
+        $this->userId = $userId;
+        $this->data = $data;
+        $this->type = $type;
     }
 
     /**
@@ -52,8 +54,9 @@ class TestEvent implements ShouldBroadcastNow
     public function broadcastWith()
     {
         return [
-            'actionId' => $this->actionId,
-            'actionData' => $this->actionData,
+            'userId' => $this->userId,
+            'data' => $this->data,
+            'type' => $this->type,
         ];
     }
 

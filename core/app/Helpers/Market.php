@@ -23,7 +23,9 @@ class Market {
         $grocery = Grocery::whereIngredientId($ingredient->ingredient_id)->first();
 
         //Update quantity
-        $grocery->quantity += $response['quantitySold'];
+        if($grocery->quantity == 0){
+            $grocery->quantity += $response['quantitySold'];
+        }
         
         //Save changes
         $grocery->save();
