@@ -167,6 +167,8 @@ return [
          */
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,
+        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -232,5 +234,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+    'broadcast_port' => env('BROADCAST_PORT', '8081'),
+    'publisher_url' => env('PUBLISHER_URL', 'http://localhost'),
 
 ];

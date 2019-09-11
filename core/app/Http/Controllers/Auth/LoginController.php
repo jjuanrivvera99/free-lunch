@@ -158,7 +158,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        event(new NotifyEvent($user->id, "El usuario ".$user->name." acaba de iniciar sesión"));
+        event(new NotifyEvent($user->id, $user->name." acaba de iniciar sesión"));
     }
 
     /**

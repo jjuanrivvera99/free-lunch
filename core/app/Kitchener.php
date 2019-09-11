@@ -37,6 +37,7 @@ class Kitchener extends Model implements Auditable
      */
     protected $auditInclude = [
         'user_id',
+        'busy',
     ];
 
     /**
@@ -46,5 +47,6 @@ class Kitchener extends Model implements Auditable
      */
     protected $fillable = [
         'user_id',
+        'busy',
     ];
 }

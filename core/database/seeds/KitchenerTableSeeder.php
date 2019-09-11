@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+use App\Kitchener;
 use Illuminate\Database\Seeder;
 
 class KitchenerTableSeeder extends Seeder
@@ -11,13 +13,16 @@ class KitchenerTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('kitchener')->insert([
-            [
-                "user_id" => 3
-            ],
-            [
-                "user_id" => 4
-            ],
+        Kitchener::create([
+            "user_id" => 3
         ]);
+
+        Kitchener::create([
+            "user_id" => 4
+        ]);
+
+        User::find(3)->assignRole('kitchener');
+        User::find(4)->assignRole('kitchener');
+        User::find(5)->assignRole('kitchener');
     }
 }

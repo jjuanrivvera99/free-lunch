@@ -24,8 +24,17 @@ Route::get('/apiTest/{name}', "GroceryController@buy");
 
 //Requests routes
 Route::group(['prefix' => 'request', 'middlewate' => ['auth']], function () {
-    Route::post('/list', "RequestController@index");
-    Route::get('/create', "RequestController@store");
-    Route::get('/create/{quantity}', "RequestController@store")->where('quantity','[0-9]+');
+    Route::post('/list', "RequestController@index")->middleware('has.permission:request.list');
+    Route::post('/create', "RequestController@store")->middleware('has.permission:request.create');
+    Route::post('/assign', "RequestController@assign")->middleware('has.permission:request.assign');
+});
+
+//Plate routes
+Route::group(['prefix' => 'plate', 'middlewate' => ['auth']], function () {
+    
+});
+
+Route::get('/permissions', function () {
+    return Auth::user()->getPermissions();
 });
 

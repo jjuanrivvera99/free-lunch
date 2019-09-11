@@ -16,6 +16,7 @@ class CreateKitchenersTable extends Migration
         Schema::create('kitchener', function (Blueprint $table) {
             $table->bigIncrements('kitchener_id');
             $table->bigInteger('user_id');
+            $table->boolean('busy')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

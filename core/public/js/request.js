@@ -100,7 +100,11 @@ var KTBootstrapSwitch = function () {
   // Private functions
   var demos = function demos() {
     // minimum setup
-    $('[data-switch=true]').bootstrapSwitch();
+    $('[data-switch=true]').bootstrapSwitch({
+      onSwitchChange: function onSwitchChange(e, state) {
+        $("#request-qty").toggle('slow', 'swing');
+      }
+    });
   };
 
   return {
@@ -115,7 +119,7 @@ var KTDatatablesDataSourceAjaxClient = function () {
   var initTable = function initTable() {
     var table = $('#kt_table_1'); // begin first table
 
-    table.DataTable({
+    dataTable = table.DataTable({
       responsive: true,
       ajax: {
         url: '/request/list',
@@ -151,7 +155,16 @@ var KTDatatablesDataSourceAjaxClient = function () {
         title: 'Actions',
         orderable: false,
         render: function render(data, type, full, meta) {
-          return "\n                        <span class=\"dropdown\">\n                            <a href=\"#\" class=\"btn btn-sm btn-clean btn-icon btn-icon-md\" data-toggle=\"dropdown\" aria-expanded=\"true\">\n                              <i class=\"la la-ellipsis-h\"></i>\n                            </a>\n                            <div class=\"dropdown-menu dropdown-menu-right\">\n                                <a class=\"dropdown-item\" href=\"#\"><i class=\"la la-edit\"></i> Edit Details</a>\n                                <a class=\"dropdown-item\" href=\"#\"><i class=\"la la-leaf\"></i> Update Status</a>\n                                <a class=\"dropdown-item\" href=\"#\"><i class=\"la la-print\"></i> Generate Report</a>\n                            </div>\n                        </span>\n                        <a href=\"#\" class=\"btn btn-sm btn-clean btn-icon btn-icon-md\" title=\"View\">\n                          <i class=\"la la-edit\"></i>\n                        </a>";
+          var requestID = full.RequestID;
+          var buttons = "<span class=\"dropdown\">\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-sm btn-clean btn-icon btn-icon-md\" data-toggle=\"dropdown\" aria-expanded=\"true\">\n\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"la la-ellipsis-h\"></i>\n\t\t\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"dropdown-menu dropdown-menu-right\">";
+          buttons += "<a class=\"dropdown-item\" href=\"#\"><i class=\"la la-edit\"></i> View</a>";
+
+          if (can('request.assign')) {
+            buttons += "<a class=\"dropdown-item assign-to-me\" href=\"#\" data-request=\"".concat(requestID, "\"><i class=\"la la-leaf\"></i> Assign to me</a>");
+          }
+
+          buttons += "</div>\n\t\t\t\t\t\t\t</span>";
+          return buttons;
         }
       }, {
         targets: -2,
@@ -197,7 +210,56 @@ var KTDatatablesDataSourceAjaxClient = function () {
   };
 }();
 
-jQuery(document).ready(function () {
+$(document).on("click", ".assign-to-me", function (e) {
+  var requestId = $(this).data('request');
+  $.ajax({
+    url: '/request/assign',
+    type: 'POST',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: {
+      request_id: requestId,
+      request_state_id: 2
+    },
+    error: function error(response) {
+      toastr['error'](response.responseJSON.message);
+    }
+  });
+});
+$(document).on("click", "#submit-request", function (e) {
+  var input = $("#request-qty-input");
+  var val = 1;
+
+  if (input.is(':visible')) {
+    if (input.val()) {
+      val = input.val();
+    } else {
+      toastr['error']("Value missing");
+      return false;
+    }
+  }
+
+  $.ajax({
+    url: '/request/create',
+    type: 'POST',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: {
+      quantity: val
+    },
+    success: function success() {
+      toastr['success']('The order was sended');
+      $("#kt_modal").modal('hide');
+      input.val("");
+    },
+    error: function error() {
+      toastr['success']('An error has ocurred');
+    }
+  });
+});
+$(document).ready(function () {
   KTDatatablesDataSourceAjaxClient.init();
   KTBootstrapSwitch.init();
 });

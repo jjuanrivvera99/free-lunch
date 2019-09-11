@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Auth;
 use App\User;
 use App\Plate;
+use App\Kitchener;
+use App\Events\NotifyEvent;
 
 class RequestController extends Controller
 {
@@ -43,18 +45,22 @@ class RequestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $quantity = 1)
+    public function store(Request $request)
     {
-        $user_id = Auth::id();
+        $quantity = ($request->quantity) ? $request->quantity : 1;
+
+        $user = Auth::user();
         $date = Carbon::now();
 
         for ($i=0; $i < $quantity; $i++) { 
             $requestModel = RequestModel::create([
-                'user_id'           => $user_id,
+                'user_id'           => $user->id,
                 'request_state_id'  => 1,
                 'date'              => $date,
             ]);
         }
+
+        event(new NotifyEvent($user->id, $user->name." has requested ".$quantity." plate(s)"));
         
         return $requestModel;
     }
@@ -68,7 +74,37 @@ class RequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+    }
+
+    public function assign(Request $request){
+
+        $user = Auth::user();
+
+        $request_id = $request->request_id;
+        $request_state_id = $request->request_state_id;
+
+        $kitchener = $user->kitchener;
+
+        $plate = Plate::inRandomOrder()->first();
+
+        $requestModel = RequestModel::find($request_id);
+
+        if($kitchener->busy){
+            return abort(400, 'The kitchener is busy');
+        }
+
+        if($requestModel->kitchener_id){
+            return abort(400, 'The order is already assigned');
+        }
+
+        $requestModel->update([
+            'request_state_id' => $request_state_id,
+            'kitchener_id' => $kitchener->kitchener_id,
+            'plate_id' => $plate->plate_id,
+        ]);
+
+        event(new NotifyEvent($user->id, "The order ".$request_id." was assigned to ".$user->name));
     }
 
     public function validatePlate($plate){

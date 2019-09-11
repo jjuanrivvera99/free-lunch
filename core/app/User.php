@@ -62,4 +62,11 @@ class User extends Authenticatable implements Auditable
     public function requests(){
         return $this->hasMany('App\Request', 'user_id');
     }
+
+    /**
+     * Get kitchener
+     */
+    public function kitchener(){
+        return $this->hasOne('App\Kitchener', 'user_id');
+    }
 }

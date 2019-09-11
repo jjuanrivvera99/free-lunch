@@ -40,9 +40,6 @@ class BuyAllIngredients extends Command
      */
     public function handle()
     {
-        $grocery = new Grocery;
-        $ingredient = new Ingredient();
-
-        BuyIngredientsJob::dispatch($grocery, $ingredient)->delay(now()->addSeconds(30));
+        BuyIngredientsJob::dispatch()->delay(now()->addSeconds(30));
     }
 }

@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Grocery;
 use App\Ingredient;
 use GuzzleHttp\Client;
+use App\Events\NotifyEvent;
 
 class Market {
 
@@ -23,12 +24,14 @@ class Market {
         $grocery = Grocery::whereIngredientId($ingredient->ingredient_id)->first();
 
         //Update quantity
-        if($grocery->quantity == 0){
-            $grocery->quantity += $response['quantitySold'];
+        if($grocery->quantity == 0 && $response['quantitySold'] > 0){
+            $grocery->quantity = $response['quantitySold'];
+
+            //Save changes
+            $grocery->save();
+
+            event(new NotifyEvent(1, $response['quantitySold']." ".$response["name"]." buyed"));
         }
-        
-        //Save changes
-        $grocery->save();
     }
 
     /**

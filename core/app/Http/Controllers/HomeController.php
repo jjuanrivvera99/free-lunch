@@ -28,9 +28,6 @@ class HomeController extends Controller
     {
         SEO::opengraph()->setUrl(URL::current());
 
-        // TestJobs::dispatch()->delay(now()->addMinutes(1));
-        
-
-        return view('metronic');
+        return view('home');
     }
 }

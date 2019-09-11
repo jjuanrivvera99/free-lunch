@@ -9337,10 +9337,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_0__);
 
-console.log(host + ':' + port);
 var sock = socket_io_client__WEBPACK_IMPORTED_MODULE_0___default()(host + ':' + port);
+console.log(host + ':' + port);
 sock.on('test-channel-one:App\\Events\\NotifyEvent', function (response) {
   toastr[response.type](response.data);
+  dataTable.ajax.reload(null, false);
 });
 
 /***/ }),

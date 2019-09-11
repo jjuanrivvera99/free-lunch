@@ -1,9 +1,10 @@
 import io from 'socket.io-client';
 
-console.log(host+':'+port);
-
 var sock = io(host+':'+port);
+
+console.log(host+':'+port);
 
 sock.on('test-channel-one:App\\Events\\NotifyEvent', function (response) {
     toastr[response.type](response.data);
+    dataTable.ajax.reload(null, false);
 });
