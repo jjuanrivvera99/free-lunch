@@ -9338,7 +9338,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_0__);
 
 var sock = socket_io_client__WEBPACK_IMPORTED_MODULE_0___default()(host + ':' + port);
-socket_io_client__WEBPACK_IMPORTED_MODULE_0___default.a.set('origins', '*:*');
 console.log(host + ':' + port);
 sock.on('test-channel-one:App\\Events\\NotifyEvent', function (response) {
   toastr[response.type](response.data);
