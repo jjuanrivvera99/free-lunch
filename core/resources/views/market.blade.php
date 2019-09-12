@@ -9,13 +9,6 @@
             <div class="kt-subheader   kt-grid__item" id="kt_subheader">
                 <div class="kt-container ">
                     <div class="kt-subheader__main">
-                        <h3 class="kt-subheader__title">Dashboard</h3>
-                        @can('request.create')
-                            <span class="kt-subheader__separator kt-subheader__separator--v"></span>
-                            <a href="#" data-toggle="modal" data-target="#kt_modal" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
-                                New order
-                            </a>
-                        @endcan
                     </div>
                 </div>
             </div>
@@ -31,7 +24,7 @@
                                 <i class="kt-font-brand flaticon2-line-chart"></i>
                             </span>
                             <h3 class="kt-portlet__head-title">
-                                List of Orders
+                                Grocery Inventory
                             </h3>
                         </div>
                     </div>
@@ -41,13 +34,9 @@
                         <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
                             <thead>
                                 <tr>
-                                    <th>RequestID</th>
-                                    <th>User</th>
-                                    <th>Kitchener</th>
-                                    <th>Plate</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Desc</th>
                                 </tr>
                             </thead>
                         </table>

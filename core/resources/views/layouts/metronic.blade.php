@@ -258,175 +258,30 @@
 								<div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper" style="opacity: 1;">
                                     <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile ">
                                         <ul class="kt-menu__nav ">
-                                            <li class="kt-menu__item kt-menu__item--open kt-menu__item--here kt-menu__item--submenu kt-menu__item--rel"
-                                                data-ktmenu-submenu-toggle="hover" aria-haspopup="true"><a
-                                                    href="/"
-                                                    class="kt-menu__link kt-menu__toggle"><span
-                                                        class="kt-menu__link-text">Orders</span></a>
+                                            <li class="kt-menu__item kt-menu__item--open kt-menu__item--here kt-menu__item--submenu kt-menu__item--rel" aria-haspopup="true">
+												<a href="/"  class="kt-menu__link"><span class="kt-menu__link-text">Orders</span></a>
 											</li>
 
 											@can('plate.list')
 												<li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel"
 													data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a
-														href="javascript:;" class="kt-menu__link kt-menu__toggle"><span
+														href="/plate/list" class="kt-menu__link"><span
 															class="kt-menu__link-text">Plates</span><i
 															class="kt-menu__ver-arrow la la-angle-right"></i></a>
-													<div
-														class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
-														<ul class="kt-menu__subnav">
-															<li class="kt-menu__item  kt-menu__item--submenu"
-																data-ktmenu-submenu-toggle="hover" aria-haspopup="true"><a
-																	href="javascript:;"
-																	class="kt-menu__link kt-menu__toggle"><i
-																		class="kt-menu__link-icon flaticon2-architecture-and-city"></i><span
-																		class="kt-menu__link-text">Create</span></a>
-																
-															</li>
-															<li class="kt-menu__item  kt-menu__item--submenu"
-																data-ktmenu-submenu-toggle="hover" aria-haspopup="true"><a
-																	href="javascript:;"
-																	class="kt-menu__link kt-menu__toggle"><i
-																		class="kt-menu__link-icon flaticon2-browser-2"></i><span
-																		class="kt-menu__link-text">List</span></a>
-															</li>
-														</ul>
-													</div>
+													
 												</li>
 											@endcan
 
 											@can('market.list')
 												<li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel"
 													data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a
-														href="javascript:;" class="kt-menu__link kt-menu__toggle"><span
+														href="/market" class="kt-menu__link"><span
 															class="kt-menu__link-text">Market</span><i
 															class="kt-menu__ver-arrow la la-angle-right"></i></a>
-													<div
-														class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
-														<ul class="kt-menu__subnav">
-															<li class="kt-menu__item  kt-menu__item--submenu"
-																data-ktmenu-submenu-toggle="hover" aria-haspopup="true"><a
-																	href="javascript:;"
-																	class="kt-menu__link kt-menu__toggle"><i
-																		class="kt-menu__link-icon flaticon2-cube-1"></i><span
-																		class="kt-menu__link-text">Users</span><i
-																		class="kt-menu__hor-arrow la la-angle-right"></i><i
-																		class="kt-menu__ver-arrow la la-angle-right"></i></a>
-																<div
-																	class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
-																	<ul class="kt-menu__subnav">
-																		<li class="kt-menu__item " aria-haspopup="true"><a
-																				href="/metronic/preview/demo10/custom/apps/user/list-default.html"
-																				class="kt-menu__link "><i
-																					class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-																					class="kt-menu__link-text">List -
-																					Default</span></a></li>
-																		<li class="kt-menu__item " aria-haspopup="true"><a
-																				href="/metronic/preview/demo10/custom/apps/user/list-datatable.html"
-																				class="kt-menu__link "><i
-																					class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-																					class="kt-menu__link-text">List -
-																					Datatable</span></a></li>
-																		<li class="kt-menu__item " aria-haspopup="true"><a
-																				href="/metronic/preview/demo10/custom/apps/user/list-columns-1.html"
-																				class="kt-menu__link "><i
-																					class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-																					class="kt-menu__link-text">List -
-																					Columns 1</span></a></li>
-																		<li class="kt-menu__item " aria-haspopup="true"><a
-																				href="/metronic/preview/demo10/custom/apps/user/list-columns-2.html"
-																				class="kt-menu__link "><i
-																					class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-																					class="kt-menu__link-text">List -
-																					Columns 2</span></a></li>
-																		<li class="kt-menu__item " aria-haspopup="true"><a
-																				href="/metronic/preview/demo10/custom/apps/user/add-user.html"
-																				class="kt-menu__link "><i
-																					class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-																					class="kt-menu__link-text">Add
-																					User</span></a></li>
-																		<li class="kt-menu__item " aria-haspopup="true"><a
-																				href="/metronic/preview/demo10/custom/apps/user/edit-user.html"
-																				class="kt-menu__link "><i
-																					class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-																					class="kt-menu__link-text">Edit
-																					User</span></a></li>
-																		<li class="kt-menu__item  kt-menu__item--submenu"
-																			data-ktmenu-submenu-toggle="hover"
-																			aria-haspopup="true"><a href="javascript:;"
-																				class="kt-menu__link kt-menu__toggle"><i
-																					class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-																					class="kt-menu__link-text">Profile
-																					1</span><i
-																					class="kt-menu__hor-arrow la la-angle-right"></i><i
-																					class="kt-menu__ver-arrow la la-angle-right"></i></a>
-																			<div
-																				class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--right">
-																				<ul class="kt-menu__subnav">
-																					<li class="kt-menu__item "
-																						aria-haspopup="true"><a
-																							href="/metronic/preview/demo10/custom/apps/user/profile-1/overview.html"
-																							class="kt-menu__link "><i
-																								class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span
-																								class="kt-menu__link-text">Overview</span></a>
-																					</li>
-																					<li class="kt-menu__item "
-																						aria-haspopup="true"><a
-																							href="/metronic/preview/demo10/custom/apps/user/profile-1/personal-information.html"
-																							class="kt-menu__link "><i
-																								class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span
-																								class="kt-menu__link-text">Personal
-																								Information</span></a></li>
-																					<li class="kt-menu__item "
-																						aria-haspopup="true"><a
-																							href="/metronic/preview/demo10/custom/apps/user/profile-1/account-information.html"
-																							class="kt-menu__link "><i
-																								class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span
-																								class="kt-menu__link-text">Account
-																								Information</span></a></li>
-																					<li class="kt-menu__item "
-																						aria-haspopup="true"><a
-																							href="/metronic/preview/demo10/custom/apps/user/profile-1/change-password.html"
-																							class="kt-menu__link "><i
-																								class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span
-																								class="kt-menu__link-text">Change
-																								Password</span></a></li>
-																					<li class="kt-menu__item "
-																						aria-haspopup="true"><a
-																							href="/metronic/preview/demo10/custom/apps/user/profile-1/email-settings.html"
-																							class="kt-menu__link "><i
-																								class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span
-																								class="kt-menu__link-text">Email
-																								Settings</span></a></li>
-																				</ul>
-																			</div>
-																		</li>
-																		<li class="kt-menu__item " aria-haspopup="true"><a
-																				href="/metronic/preview/demo10/custom/apps/user/profile-2.html"
-																				class="kt-menu__link "><i
-																					class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-																					class="kt-menu__link-text">Profile
-																					2</span></a></li>
-																		<li class="kt-menu__item " aria-haspopup="true"><a
-																				href="/metronic/preview/demo10/custom/apps/user/profile-3.html"
-																				class="kt-menu__link "><i
-																					class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-																					class="kt-menu__link-text">Profile
-																					3</span></a></li>
-																		<li class="kt-menu__item " aria-haspopup="true"><a
-																				href="/metronic/preview/demo10/custom/apps/user/profile-4.html"
-																				class="kt-menu__link "><i
-																					class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
-																					class="kt-menu__link-text">Profile
-																					4</span></a></li>
-																	</ul>
-																</div>
-															</li>
-														</ul>
-													</div>
 												</li>
 											@endcan
 
-                                            </ul>
+                                        </ul>
                                     </div>
                                 </div>
 

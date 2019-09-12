@@ -14,7 +14,7 @@ class PlateTableSeeder extends Seeder
     {
         Plate::create([
             "plate_state_id" => 1,
-            "name" => "Chiken Roll",
+            "name" => "Chicken Roll",
             "description" => ""
         ]);
         

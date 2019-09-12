@@ -27,11 +27,20 @@ Route::group(['prefix' => 'request', 'middlewate' => ['auth']], function () {
     Route::post('/list', "RequestController@index")->middleware('has.permission:request.list');
     Route::post('/create', "RequestController@store")->middleware('has.permission:request.create');
     Route::post('/assign', "RequestController@assign")->middleware('has.permission:request.assign');
+    Route::post('/ingredients', "RequestController@requestIngredients")->middleware('has.permission:request.ingredients');
+    Route::post('/deliver', "GroceryController@deliverIngredients")->middleware('has.permission:request.deliver');
+    Route::post('/buy', 'GroceryController@buyIngredients')->middleware('has.permission:request.buy');
+    Route::post('/prepare', 'RequestController@preparePlate')->middleware('has.permission:plate.prepare');
 });
 
 //Plate routes
 Route::group(['prefix' => 'plate', 'middlewate' => ['auth']], function () {
-    
+    Route::post('/list', "PlateController@index")->middleware('has.permission:plate.list');
+});
+
+//Market routes
+Route::group(['prefix' => 'market', 'middlewate' => ['auth']], function () {
+    Route::post('/', "GroceryController@index")->middleware('has.permission:market.list');
 });
 
 Route::get('/permissions', function () {

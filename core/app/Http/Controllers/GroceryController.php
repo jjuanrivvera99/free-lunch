@@ -2,16 +2,81 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Market;
 use App\Grocery;
 use App\Ingredient;
+use App\Events\NotifyEvent;
 use Illuminate\Http\Request;
 use App\Jobs\BuyIngredientsJob;
+use App\Request as RequestModel;
 
 class GroceryController extends Controller
 {
-        
+
     public function buy($name = "all"){
         BuyIngredientsJob::dispatch($name)->delay(now()->addSeconds(30));
+    }
+
+    public function deliverIngredients(Request $request){
+        $user              = Auth::user();
+        $request_id        = $request->request_id;
+        $request_state_id  = $request->request_state_id;
+        $requestModel      = RequestModel::findOrFail($request_id);
+
+        if(!\Shinobi::isRole('grocery')){
+            return abort(400, 'You are not from grocery');
+        }
+
+        if($requestModel->request_state_id != 3){
+            return abort(400, 'The order is not waiting for ingredients');
+        }
+
+        $ingredients = $this->getRequestIngredients($request_id);
+
+        foreach($ingredients as $ingredient){
+            $grocery = Grocery::whereIngredientId($ingredient->ingredient_id)->first();
+
+            
+            if($grocery->quantity < $ingredient->qty){
+                return abort(400, 'There is not enough ingredients');
+            }
+            
+            $grocery->quantity -= $ingredient->qty;
+            $grocery->save();
+        }
+
+        $requestModel->update([
+            'request_state_id' => $request_state_id,
+        ]);
+
+        event(new NotifyEvent($user->id, "The order $request_id is ready to prepare"));
+    }
+
+    public function buyIngredients(Request $request){
+        $request_id        = $request->request_id;
+        $requestModel      = RequestModel::findOrFail($request_id);
+
+        if(!\Shinobi::can('request.buy')){
+            return abort(403);
+        }
+
+        $ingredients = $this->getRequestIngredients($request_id);
+
+        foreach($ingredients as $ingredient){
+            Market::buyIngredient($ingredient->name, false);
+
+        }
+    }
+
+    public function getRequestIngredients($request){
+        
+        return Ingredient::join('plate_ingredient', 'plate_ingredient.ingredient_id', '=', 'ingredient.ingredient_id')
+                            ->join('plate', 'plate.plate_id', '=', 'plate_ingredient.plate_id')
+                            ->join('request', 'request.plate_id', '=', 'plate.plate_id')
+                            ->select('ingredient.*', 'plate_ingredient.qty')
+                            ->where('request.request_id', $request)
+                            ->get();
     }
 
 }

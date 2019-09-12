@@ -1,5 +1,20 @@
 'use strict';
 
+const ajax = {
+	post : (url,data,error = null, success = null) => {
+		$.ajax({
+			url: url,
+			type: 'POST',
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			data: data,
+			success:success,
+			error: error
+		});
+	}
+};
+
 var KTBootstrapSwitch = function () {
 
     // Private functions
@@ -67,8 +82,24 @@ var KTDatatablesDataSourceAjaxClient = function() {
 
 						buttons += `<a class="dropdown-item" href="#"><i class="la la-edit"></i> View</a>`;
 
-						if(can('request.assign')){
-							buttons += `<a class="dropdown-item assign-to-me" href="#" data-request="${requestID}"><i class="la la-leaf"></i> Assign to me</a>`;
+						if(can('request.assign') && full.Status == 1){
+							buttons += `<a class="dropdown-item actions" href="#" data-url="/request/assign" data-state="2" data-request="${requestID}"><i class="la flaticon-user-add"></i> Assign to me</a>`;
+						}
+
+						if(can('request.ingredients') && full.Status == 2){
+							buttons += `<a class="dropdown-item actions" href="#" data-url="/request/ingredients" data-state="3" data-request="${requestID}"><i class="fa fa-pizza-slice"></i> Request Ingredients</a>`;
+						}
+
+						if(can('request.deliver') && full.Status == 3){
+							buttons += `<a class="dropdown-item actions" href="#" data-url="/request/deliver" data-state="4" data-request="${requestID}"><i class="la flaticon-paper-plane-1"></i> Deliver Ingredients</a>`;
+						}
+
+						if(can('request.buy')){
+							buttons += `<a class="dropdown-item actions" href="#" data-url="/request/buy" data-state="" data-request="${requestID}"><i class="la la-money"></i> Buy Ingredients</a>`;
+						}
+
+						if(can('plate.prepare') && full.Status == 4){
+							buttons += `<a class="dropdown-item actions" href="#" data-url="/request/prepare" data-state="5" data-request="${requestID}"><i class="la flaticon2-checkmark"></i> Prepare</a>`;
 						}
 
 						buttons +=`</div>
@@ -84,7 +115,7 @@ var KTDatatablesDataSourceAjaxClient = function() {
 							1: {'title': 'Sended', 'class': 'kt-badge--info'},
 							2: {'title': 'Assigned', 'class': ' kt-badge--warning'},
 							3: {'title': 'Waiting', 'class': ' kt-badge--primary'},
-							4: {'title': 'Processing', 'class': ' kt-badge--info'},
+							4: {'title': 'Ready', 'class': ' kt-badge--info'},
 							5: {'title': 'Done', 'class': ' kt-badge--success'},
 						};
 						if (typeof status[data] === 'undefined') {
@@ -108,23 +139,21 @@ var KTDatatablesDataSourceAjaxClient = function() {
 
 }();
 
-$(document).on("click",".assign-to-me",function(e) {
+$(document).on("click",".actions",function(e) {
 	let requestId = $(this).data('request');
+	let url = $(this).data('url');
+	let state = $(this).data('state');
+	
+	let data = {
+		request_id: requestId,
+		request_state_id: state,
+	}
 
-	$.ajax({
-		url: '/request/assign',
-		type: 'POST',
-		headers: {
-			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		},
-		data: {
-			request_id: requestId,
-			request_state_id: 2,
-		},
-		error: (response) => {
-			toastr['error'](response.responseJSON.message);
-		}
-	});
+	let error = (response) => {
+		toastr['error'](response.responseJSON.message);
+	}
+
+	ajax.post(url, data, error);
 });
 
 $(document).on("click","#submit-request",function(e){
@@ -142,24 +171,22 @@ $(document).on("click","#submit-request",function(e){
 		}
 	}
 
-	$.ajax({
-		url: '/request/create',
-		type: 'POST',
-		headers: {
-			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		},
-		data: {
-			quantity: val
-		},
-		success: () => {
-			toastr['success']('The order was sended');
-			$("#kt_modal").modal('hide');
-			input.val("");
-		},
-		error: () => {
-			toastr['success']('An error has ocurred');
-		}
-	});
+	let url = '/request/create';
+	
+	let data = {
+		quantity: val
+	}
+
+	let error = () => {
+		toastr['success']('An error has ocurred');
+	}
+
+	let success = () => {
+		$("#kt_modal").modal('hide');
+		input.val("");
+	}
+
+	ajax.post(url, data, error, success);
 });
 
 $(document).ready(function() {

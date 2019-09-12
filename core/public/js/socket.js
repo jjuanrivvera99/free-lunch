@@ -9340,7 +9340,10 @@ __webpack_require__.r(__webpack_exports__);
 var sock = socket_io_client__WEBPACK_IMPORTED_MODULE_0___default()(host + ':' + port);
 console.log(host + ':' + port);
 sock.on('test-channel-one:App\\Events\\NotifyEvent', function (response) {
-  toastr[response.type](response.data);
+  if (response.data) {
+    toastr[response.type](response.data);
+  }
+
   dataTable.ajax.reload(null, false);
 });
 

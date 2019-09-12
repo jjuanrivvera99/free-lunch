@@ -23,6 +23,5 @@ class KitchenerTableSeeder extends Seeder
 
         User::find(3)->assignRole('kitchener');
         User::find(4)->assignRole('kitchener');
-        User::find(5)->assignRole('kitchener');
     }
 }

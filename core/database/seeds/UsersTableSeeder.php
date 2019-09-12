@@ -43,6 +43,7 @@ class UsersTableSeeder extends Seeder
 
         User::find(1)->assignRole('admin');
         User::find(2)->assignRole('manager');
+        User::find(5)->assignRole('grocery');
 
     }
 }

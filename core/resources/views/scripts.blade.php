@@ -6,7 +6,7 @@
     function can(permission){
         let response = false;
 
-        if(permissions.includes(permission)){
+        if(permissions.includes(permission) || role('admin')){
             response = true;
         }
 
@@ -22,6 +22,4 @@
 
         return response;
     }
-    
-    $(".kt-portlet__head-toolbar").remove();
 </script>

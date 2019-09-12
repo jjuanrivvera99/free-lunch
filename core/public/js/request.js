@@ -96,6 +96,23 @@
 "use strict";
 
 
+var ajax = {
+  post: function post(url, data) {
+    var error = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    var success = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+    $.ajax({
+      url: url,
+      type: 'POST',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: data,
+      success: success,
+      error: error
+    });
+  }
+};
+
 var KTBootstrapSwitch = function () {
   // Private functions
   var demos = function demos() {
@@ -159,8 +176,24 @@ var KTDatatablesDataSourceAjaxClient = function () {
           var buttons = "<span class=\"dropdown\">\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-sm btn-clean btn-icon btn-icon-md\" data-toggle=\"dropdown\" aria-expanded=\"true\">\n\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"la la-ellipsis-h\"></i>\n\t\t\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"dropdown-menu dropdown-menu-right\">";
           buttons += "<a class=\"dropdown-item\" href=\"#\"><i class=\"la la-edit\"></i> View</a>";
 
-          if (can('request.assign')) {
-            buttons += "<a class=\"dropdown-item assign-to-me\" href=\"#\" data-request=\"".concat(requestID, "\"><i class=\"la la-leaf\"></i> Assign to me</a>");
+          if (can('request.assign') && full.Status == 1) {
+            buttons += "<a class=\"dropdown-item actions\" href=\"#\" data-url=\"/request/assign\" data-state=\"2\" data-request=\"".concat(requestID, "\"><i class=\"la flaticon-user-add\"></i> Assign to me</a>");
+          }
+
+          if (can('request.ingredients') && full.Status == 2) {
+            buttons += "<a class=\"dropdown-item actions\" href=\"#\" data-url=\"/request/ingredients\" data-state=\"3\" data-request=\"".concat(requestID, "\"><i class=\"fa fa-pizza-slice\"></i> Request Ingredients</a>");
+          }
+
+          if (can('request.deliver') && full.Status == 3) {
+            buttons += "<a class=\"dropdown-item actions\" href=\"#\" data-url=\"/request/deliver\" data-state=\"4\" data-request=\"".concat(requestID, "\"><i class=\"la flaticon-paper-plane-1\"></i> Deliver Ingredients</a>");
+          }
+
+          if (can('request.buy')) {
+            buttons += "<a class=\"dropdown-item actions\" href=\"#\" data-url=\"/request/buy\" data-state=\"\" data-request=\"".concat(requestID, "\"><i class=\"la la-money\"></i> Buy Ingredients</a>");
+          }
+
+          if (can('plate.prepare') && full.Status == 4) {
+            buttons += "<a class=\"dropdown-item actions\" href=\"#\" data-url=\"/request/prepare\" data-state=\"5\" data-request=\"".concat(requestID, "\"><i class=\"la flaticon2-checkmark\"></i> Prepare</a>");
           }
 
           buttons += "</div>\n\t\t\t\t\t\t\t</span>";
@@ -183,7 +216,7 @@ var KTDatatablesDataSourceAjaxClient = function () {
               'class': ' kt-badge--primary'
             },
             4: {
-              'title': 'Processing',
+              'title': 'Ready',
               'class': ' kt-badge--info'
             },
             5: {
@@ -210,22 +243,20 @@ var KTDatatablesDataSourceAjaxClient = function () {
   };
 }();
 
-$(document).on("click", ".assign-to-me", function (e) {
+$(document).on("click", ".actions", function (e) {
   var requestId = $(this).data('request');
-  $.ajax({
-    url: '/request/assign',
-    type: 'POST',
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    data: {
-      request_id: requestId,
-      request_state_id: 2
-    },
-    error: function error(response) {
-      toastr['error'](response.responseJSON.message);
-    }
-  });
+  var url = $(this).data('url');
+  var state = $(this).data('state');
+  var data = {
+    request_id: requestId,
+    request_state_id: state
+  };
+
+  var error = function error(response) {
+    toastr['error'](response.responseJSON.message);
+  };
+
+  ajax.post(url, data, error);
 });
 $(document).on("click", "#submit-request", function (e) {
   var input = $("#request-qty-input");
@@ -240,24 +271,21 @@ $(document).on("click", "#submit-request", function (e) {
     }
   }
 
-  $.ajax({
-    url: '/request/create',
-    type: 'POST',
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    data: {
-      quantity: val
-    },
-    success: function success() {
-      toastr['success']('The order was sended');
-      $("#kt_modal").modal('hide');
-      input.val("");
-    },
-    error: function error() {
-      toastr['success']('An error has ocurred');
-    }
-  });
+  var url = '/request/create';
+  var data = {
+    quantity: val
+  };
+
+  var error = function error() {
+    toastr['success']('An error has ocurred');
+  };
+
+  var success = function success() {
+    $("#kt_modal").modal('hide');
+    input.val("");
+  };
+
+  ajax.post(url, data, error, success);
 });
 $(document).ready(function () {
   KTDatatablesDataSourceAjaxClient.init();
