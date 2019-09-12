@@ -15,7 +15,7 @@ class PlateTableSeeder extends Seeder
         Plate::create([
             "plate_state_id" => 1,
             "name" => "Chicken Roll",
-            "description" => ""
+            "description" => "Cheese stuffed chicken"
         ]);
         
         Plate::create([
@@ -34,6 +34,18 @@ class PlateTableSeeder extends Seeder
             "plate_state_id" => 1,
             "name" => "Lasagne",
             "description" => "Pasta in the form of wide strips."
+        ]);
+
+        Plate::create([
+            "plate_state_id" => 1,
+            "name" => "Wrapped onions",
+            "description" => "Bacon stuffed onion."
+        ]);
+
+        Plate::create([
+            "plate_state_id" => 1,
+            "name" => "Letucce Wraps",
+            "description" => "Pork stuffed lettuce."
         ]);
     }
 }

@@ -74,6 +74,12 @@ class PlateIngredientTableSeeder extends Seeder
         ]);
 
         PlateIngredient::create([
+            "plate_id" => 3,
+            "ingredient_id" => 2,
+            "qty" => 3,
+        ]);
+
+        PlateIngredient::create([
             "plate_id" => 4,
             "ingredient_id" => 8,
             "qty" => 5,
@@ -94,6 +100,42 @@ class PlateIngredientTableSeeder extends Seeder
         PlateIngredient::create([
             "plate_id" => 4,
             "ingredient_id" => 1,
+            "qty" => 2,
+        ]);
+
+        PlateIngredient::create([
+            "plate_id" => 5,
+            "ingredient_id" => 7,
+            "qty" => 2,
+        ]);
+
+        PlateIngredient::create([
+            "plate_id" => 5,
+            "ingredient_id" => 9,
+            "qty" => 2,
+        ]);
+
+        PlateIngredient::create([
+            "plate_id" => 5,
+            "ingredient_id" => 5,
+            "qty" => 1,
+        ]);
+
+        PlateIngredient::create([
+            "plate_id" => 6,
+            "ingredient_id" => 6,
+            "qty" => 2,
+        ]);
+
+        PlateIngredient::create([
+            "plate_id" => 6,
+            "ingredient_id" => 9,
+            "qty" => 2,
+        ]);
+
+        PlateIngredient::create([
+            "plate_id" => 6,
+            "ingredient_id" => 2,
             "qty" => 2,
         ]);
     }
