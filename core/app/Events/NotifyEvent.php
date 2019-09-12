@@ -41,7 +41,7 @@ class NotifyEvent implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new Channel('test-channel-one');
+        return new Channel('notify-chanel');
     }
 
     /**

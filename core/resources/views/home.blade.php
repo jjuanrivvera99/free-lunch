@@ -65,7 +65,7 @@
 
 @section('modals')
     <div class="modal fade" id="kt_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">New order</h5>
@@ -74,14 +74,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-3 col-sm-12">Massive Request</label>
+                        <label class="col-form-label col-lg-12 col-sm-12">Massive Request</label>
                         <div class="col-lg-9 col-md-9 col-sm-12">
                             <input data-switch="true" type="checkbox" checked="checked"
                                 data-on-color="success" data-off-color="warning">
                         </div>
                     </div>
-                    <div id="request-qty" class="form-group row col-lg-7 col-md-3 col-sm-3">
-                        <label>Quantity:</label>
+                    <div id="request-qty" class="form-group row col-lg-12 col-md-12 col-sm-12">
+                        <label>Quantity :</label>
                         <input id="request-qty-input" type="number" maxlength="200" class="form-control" placeholder="Enter the quantity" require>
                     </div>
                 </div>

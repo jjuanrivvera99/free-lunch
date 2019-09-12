@@ -8,8 +8,11 @@ var KTBootstrapSwitch = function () {
         $('[data-switch=true]').bootstrapSwitch({
 			onSwitchChange: function(e, state) {
 				$("#request-qty").toggle('slow','swing');
+				$(".bootstrap-switch-container").css("width", "350px");
 			}
 		});
+
+		$(".bootstrap-switch-container").css("width", "350px");
     };
 
     return {

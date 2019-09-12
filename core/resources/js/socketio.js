@@ -12,7 +12,7 @@ var redisHost = process.env.REDIS_HOST;
 var ioRedis = require('ioredis');
 var redis = new ioRedis(redisPort, redisHost);
 
-redis.subscribe(['test-channel-one', 'test-channel-two']);
+redis.subscribe(['notify-chanel']);
 
 redis.on('message', function (channel, message) {
     message  = JSON.parse(message);

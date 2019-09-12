@@ -4,7 +4,7 @@ var sock = io(host+':'+port);
 
 console.log(host+':'+port);
 
-sock.on('test-channel-one:App\\Events\\NotifyEvent', function (response) {
+sock.on('notify-chanel:App\\Events\\NotifyEvent', function (response) {
     if(response.data){
         toastr[response.type](response.data);
     }

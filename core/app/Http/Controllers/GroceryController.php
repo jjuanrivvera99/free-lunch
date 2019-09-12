@@ -48,13 +48,13 @@ class GroceryController extends Controller
         BuyIngredientsJob::dispatch($name);
     }
 
-    public function deliverIngredients(Request $request){
+    public function deliverRequestIngredients(Request $request){
         $user              = Auth::user();
         $request_id        = $request->request_id;
         $request_state_id  = $request->request_state_id;
         $requestModel      = RequestModel::findOrFail($request_id);
 
-        if($user->isRole('grocery') || !$user->isRole('admin')){
+        if(!$user->isRole('grocery') && !$user->isRole('admin')){
             return abort(400, 'You are not from grocery');
         }
 

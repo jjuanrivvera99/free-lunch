@@ -11,6 +11,7 @@ use App\Ingredient;
 use App\Events\NotifyEvent;
 use Illuminate\Http\Request;
 use App\Request as RequestModel;
+use App\Jobs\RequestIngredientsJob;
 
 class RequestController extends Controller
 {
@@ -48,22 +49,8 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        $quantity = ($request->quantity) ? $request->quantity : 1;
-
         $user = Auth::user();
-        $date = Carbon::now();
-
-        for ($i=0; $i < $quantity; $i++) { 
-            $requestModel = RequestModel::create([
-                'user_id'           => $user->id,
-                'request_state_id'  => 1,
-                'date'              => $date,
-            ]);
-        }
-
-        event(new NotifyEvent($user->id, $user->name." has ordered ".$quantity." plate(s)"));
-        
-        return $requestModel;
+        RequestIngredientsJob::dispatch($user, $request->quantity);
     }
 
     public function assign(Request $request){
