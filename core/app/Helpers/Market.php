@@ -25,8 +25,7 @@ class Market {
 
         //Update quantity
         if(($grocery->quantity == 0 && $response['quantitySold'] > 0) || !$enough){
-            $grocery->quantity = $response['quantitySold'];
-
+            $grocery->quantity += $response['quantitySold'];
             //Save changes
             $grocery->save();
 
