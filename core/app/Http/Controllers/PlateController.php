@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use SEO;
+use URL;
+use App\Plate;
 use Illuminate\Http\Request;
 
 class PlateController extends Controller
@@ -13,7 +16,19 @@ class PlateController extends Controller
      */
     public function index()
     {
-        //
+        SEO::opengraph()->setUrl(URL::current());
+
+        $menu = 'plates';
+
+        return view('plates', compact('menu'));
+    }
+
+    public function datatable(){
+        $response = [];
+
+        $response["data"] = Plate::select('plate_id', 'name', 'description')->orderBy('plate_id')->get();
+
+        return $response;
     }
 
     /**
@@ -33,51 +48,6 @@ class PlateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }

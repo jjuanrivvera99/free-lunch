@@ -70,9 +70,9 @@ class PermissionsTableSeeder extends Seeder
 
         //9
         Permission::create([
-            'name' => 'View Market',
-            'slug' => 'market.list',
-            'description' => 'View Market History',
+            'name' => 'View Grocery',
+            'slug' => 'grocery.list',
+            'description' => 'View Grocery',
         ]);
     }
 }

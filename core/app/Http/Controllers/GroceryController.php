@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use SEO;
+use URL;
 use Auth;
 use Market;
 use App\Grocery;
@@ -14,8 +16,36 @@ use App\Request as RequestModel;
 class GroceryController extends Controller
 {
 
-    public function buy($name = "all"){
-        BuyIngredientsJob::dispatch($name)->delay(now()->addSeconds(30));
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        SEO::opengraph()->setUrl(URL::current());
+
+        $menu = 'grocery';
+
+        return view('grocery', compact('menu'));
+    }
+
+    public function datatable(){
+        $response = [];
+
+        $response["data"] = Ingredient::join('grocery', 'grocery.ingredient_id','=', 'ingredient.ingredient_id')
+                                    ->select('ingredient.ingredient_id as ingredient_id', 'ingredient.name as name', 'ingredient.description as description','grocery.quantity as quantity')
+                                    ->orderBy('ingredient.ingredient_id')
+                                    ->get();
+
+        return $response;
+    }
+
+    public function buyIngredients(Request $request){
+
+        $name = ($request->ingredient_name) ? $request->ingredient_name : 'all';
+
+        BuyIngredientsJob::dispatch($name);
     }
 
     public function deliverIngredients(Request $request){
@@ -24,7 +54,7 @@ class GroceryController extends Controller
         $request_state_id  = $request->request_state_id;
         $requestModel      = RequestModel::findOrFail($request_id);
 
-        if(!\Shinobi::isRole('grocery')){
+        if($user->isRole('grocery') || !$user->isRole('admin')){
             return abort(400, 'You are not from grocery');
         }
 
@@ -39,7 +69,7 @@ class GroceryController extends Controller
 
             
             if($grocery->quantity < $ingredient->qty){
-                return abort(400, 'There is not enough ingredients');
+                return abort(400, 'There is not enough '.$ingredient->name);
             }
             
             $grocery->quantity -= $ingredient->qty;
@@ -53,7 +83,7 @@ class GroceryController extends Controller
         event(new NotifyEvent($user->id, "The order $request_id is ready to prepare"));
     }
 
-    public function buyIngredients(Request $request){
+    public function buyRequestIngredients(Request $request){
         $request_id        = $request->request_id;
         $requestModel      = RequestModel::findOrFail($request_id);
 
@@ -64,8 +94,7 @@ class GroceryController extends Controller
         $ingredients = $this->getRequestIngredients($request_id);
 
         foreach($ingredients as $ingredient){
-            Market::buyIngredient($ingredient->name, false);
-
+            Market::buyIngredient($ingredient->name);
         }
     }
 

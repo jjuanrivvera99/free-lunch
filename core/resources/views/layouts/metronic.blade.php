@@ -44,45 +44,45 @@
 		<!--end::Fonts -->
 
 		<!--begin:: Global Mandatory Vendors -->
-		<link href="./assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
 
 		<!--end:: Global Mandatory Vendors -->
 
 		<!--begin:: Global Optional Vendors -->
-		<link href="./assets/vendors/general/tether/dist/css/tether.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/nouislider/distribute/nouislider.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/summernote/dist/summernote.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/animate.css/animate.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/toastr/build/toastr.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/morris.js/morris.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/socicon/css/socicon.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/tether/dist/css/tether.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/nouislider/distribute/nouislider.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/summernote/dist/summernote.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/animate.css/animate.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/toastr/build/toastr.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/morris.js/morris.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/socicon/css/socicon.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
 
 		<!--end:: Global Optional Vendors -->
 
 		<!--begin::Global Theme Styles(used by all pages) -->
-		<link href="./assets/css/demo10/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/css/demo10/style.bundle.css" rel="stylesheet" type="text/css" />
 
 		<!--end::Global Theme Styles -->
 
 		<!--begin::Layout Skins(used by all pages) -->
 
 		<!--end::Layout Skins -->
-		<link rel="shortcut icon" href="./assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="/assets/media/logos/favicon.ico" />
 	</head>
 
 	<!-- end::Head -->
@@ -96,7 +96,7 @@
 		<div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
 			<div class="kt-header-mobile__logo">
 				<a href="demo10/index.html">
-					<img alt="Logo" src="./assets/media/logos/logo-10-sm.png" />
+					<img alt="Logo" src="/assets/media/logos/logo-10-sm.png" />
 				</a>
 			</div>
 			<div class="kt-header-mobile__toolbar">
@@ -119,7 +119,7 @@
 								<div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
 									<div class="kt-header__brand-logo">
 										<a href="demo10/index.html">
-											<img alt="Logo" src="./assets/media/logos/logo-10.png" class="kt-header__brand-logo-default" />
+											<img alt="Logo" src="/assets/media/logos/logo-10.png" class="kt-header__brand-logo-default" />
 										</a>
 									</div>
 								</div>
@@ -217,7 +217,7 @@
 										<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
 											<span class="kt-hidden kt-header__topbar-welcome">Hi,</span>
 											<span class="kt-hidden kt-header__topbar-username">Nick</span>
-											<img class="kt-hidden-" alt="Pic" src="./assets/media/users/300_21.jpg" />
+											<img class="kt-hidden-" alt="Pic" src="/assets/media/users/300_21.jpg" />
 											<span class="kt-header__topbar-icon kt-header__topbar-icon--brand kt-hidden"><b>S</b></span>
 										</div>
 										<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-xl">
@@ -225,7 +225,7 @@
 											<!--begin: Head -->
 											<div class="kt-user-card kt-user-card--skin-light kt-notification-item-padding-x">
 												<div class="kt-user-card__avatar">
-													<img class="kt-hidden-" alt="Pic" src="./assets/media/users/300_25.jpg" />
+													<img class="kt-hidden-" alt="Pic" src="/assets/media/users/300_25.jpg" />
 
 													<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
 													<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold kt-hidden">S</span>
@@ -258,12 +258,12 @@
 								<div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper" style="opacity: 1;">
                                     <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile ">
                                         <ul class="kt-menu__nav ">
-                                            <li class="kt-menu__item kt-menu__item--open kt-menu__item--here kt-menu__item--submenu kt-menu__item--rel" aria-haspopup="true">
+                                            <li class="kt-menu__item kt-menu__item--open @if($menu == 'orders') kt-menu__item--here @endif kt-menu__item--submenu kt-menu__item--rel" aria-haspopup="true">
 												<a href="/"  class="kt-menu__link"><span class="kt-menu__link-text">Orders</span></a>
 											</li>
 
 											@can('plate.list')
-												<li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel"
+												<li class="kt-menu__item @if($menu == 'plates') kt-menu__item--here @endif  kt-menu__item--submenu kt-menu__item--rel"
 													data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a
 														href="/plate/list" class="kt-menu__link"><span
 															class="kt-menu__link-text">Plates</span><i
@@ -272,11 +272,11 @@
 												</li>
 											@endcan
 
-											@can('market.list')
-												<li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel"
+											@can('grocery.list')
+												<li class="kt-menu__item @if($menu == 'grocery') kt-menu__item--here @endif kt-menu__item--submenu kt-menu__item--rel"
 													data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a
-														href="/market" class="kt-menu__link"><span
-															class="kt-menu__link-text">Market</span><i
+														href="/grocery" class="kt-menu__link"><span
+															class="kt-menu__link-text">Grocery</span><i
 															class="kt-menu__ver-arrow la la-angle-right"></i></a>
 												</li>
 											@endcan
@@ -316,36 +316,10 @@
 
 		<!-- end:: Page -->
 
-        
         <!-- Modal -->
-            <div class="modal fade" id="kt_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">New order</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            </button>
-                        </div>
-                        <div class="modal-body">
-							<div class="form-group row">
-								<label class="col-form-label col-lg-3 col-sm-12">Massive Request</label>
-								<div class="col-lg-9 col-md-9 col-sm-12">
-									<input data-switch="true" type="checkbox" checked="checked"
-										data-on-color="success" data-off-color="warning">
-								</div>
-							</div>
-							<div id="request-qty" class="form-group row col-lg-7 col-md-3 col-sm-3">
-								<label>Quantity:</label>
-								<input id="request-qty-input" type="number" maxlength="200" class="form-control" placeholder="Enter the quantity" require>
-							</div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button id="submit-request" type="button" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        @section('modals')
+            
+		@show
         <!--begin::Modal-->
 
 		<!-- begin::Scrolltop -->
@@ -384,61 +358,62 @@
 		<!-- end::Global Config -->
 
 		<!--begin:: Global Mandatory Vendors -->
-		<script src="./assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/popper.js/dist/umd/popper.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/js-cookie/src/js.cookie.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/moment/min/moment.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/tooltip.js/dist/umd/tooltip.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/perfect-scrollbar/dist/perfect-scrollbar.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/sticky-js/dist/sticky.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/wnumb/wNumb.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/popper.js/dist/umd/popper.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/js-cookie/src/js.cookie.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/moment/min/moment.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/tooltip.js/dist/umd/tooltip.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/perfect-scrollbar/dist/perfect-scrollbar.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/sticky-js/dist/sticky.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/wnumb/wNumb.js" type="text/javascript"></script>
 
 		<!--end:: Global Mandatory Vendors -->
 
 		<!--begin:: Global Optional Vendors -->
-		<script src="./assets/vendors/general/jquery-form/dist/jquery.form.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/block-ui/jquery.blockUI.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/custom/js/vendors/bootstrap-datepicker.init.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/custom/js/vendors/bootstrap-timepicker.init.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/handlebars/dist/handlebars.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/nouislider/distribute/nouislider.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/autosize/dist/autosize.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/clipboard/dist/clipboard.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/summernote/dist/summernote.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/bootstrap-notify/bootstrap-notify.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/custom/js/vendors/bootstrap-notify.init.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/jquery-validation/dist/jquery.validate.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/jquery-validation/dist/additional-methods.js" type="text/javascript"></script>
-		<script src="./assets/vendors/custom/js/vendors/jquery-validation.init.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/toastr/build/toastr.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/morris.js/morris.js" type="text/javascript"></script>
-        <script src="./assets/vendors/general/bootstrap-switch/dist/js/bootstrap-switch.js" type="text/javascript"></script>
-		<script src="./assets/vendors/custom/vendors/jquery-idletimer/idle-timer.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/waypoints/lib/jquery.waypoints.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/counterup/jquery.counterup.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/es6-promise-polyfill/promise.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
-		<script src="./assets/vendors/custom/js/vendors/sweetalert2.init.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/jquery.repeater/src/lib.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/jquery.repeater/src/jquery.input.js" type="text/javascript"></script>
-		<script src="./assets/vendors/general/jquery.repeater/src/repeater.js" type="text/javascript"></script>
-        <script src="./assets/vendors/general/dompurify/dist/purify.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/jquery-form/dist/jquery.form.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/block-ui/jquery.blockUI.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/custom/js/vendors/bootstrap-datepicker.init.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/custom/js/vendors/bootstrap-timepicker.init.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/handlebars/dist/handlebars.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/nouislider/distribute/nouislider.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/autosize/dist/autosize.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/clipboard/dist/clipboard.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/summernote/dist/summernote.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/bootstrap-notify/bootstrap-notify.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/custom/js/vendors/bootstrap-notify.init.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/jquery-validation/dist/jquery.validate.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/jquery-validation/dist/additional-methods.js" type="text/javascript"></script>
+		<script src="/assets/vendors/custom/js/vendors/jquery-validation.init.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/toastr/build/toastr.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/morris.js/morris.js" type="text/javascript"></script>
+        <script src="/assets/vendors/general/bootstrap-switch/dist/js/bootstrap-switch.js" type="text/javascript"></script>
+		<script src="/assets/vendors/custom/vendors/jquery-idletimer/idle-timer.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/waypoints/lib/jquery.waypoints.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/counterup/jquery.counterup.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/es6-promise-polyfill/promise.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
+		<script src="/assets/vendors/custom/js/vendors/sweetalert2.init.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/jquery.repeater/src/lib.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/jquery.repeater/src/jquery.input.js" type="text/javascript"></script>
+		<script src="/assets/vendors/general/jquery.repeater/src/repeater.js" type="text/javascript"></script>
+        <script src="/assets/vendors/general/dompurify/dist/purify.js" type="text/javascript"></script>
         
 		<!--end:: Global Optional Vendors -->
         
 		<!--begin::Global Theme Bundle(used by all pages) -->
-        <script src="./assets/js/demo10/scripts.bundle.js" type="text/javascript"></script>
-        <script src="./assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
+        <script src="/assets/js/demo10/scripts.bundle.js" type="text/javascript"></script>
+        <script src="/assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
 
-        @include('scripts')
+		@include('globalScripts')
 		
-		<script src="/js/request.js"></script>
-        <script src="/js/socket.js"></script>
+		@section('scripts')
+			
+		@show
 
 		<!--end::Global Theme Bundle -->
 

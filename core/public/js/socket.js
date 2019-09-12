@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -4882,7 +4882,7 @@ if (typeof WebSocket !== 'undefined') {
   BrowserWebSocket = self.WebSocket || self.MozWebSocket;
 } else {
   try {
-    NodeWebSocket = __webpack_require__(/*! ws */ 3);
+    NodeWebSocket = __webpack_require__(/*! ws */ 5);
   } catch (e) { }
 }
 
@@ -9349,7 +9349,7 @@ sock.on('test-channel-one:App\\Events\\NotifyEvent', function (response) {
 
 /***/ }),
 
-/***/ 2:
+/***/ 4:
 /*!******************************************!*\
   !*** multi ./resources/js/web-socket.js ***!
   \******************************************/
@@ -9361,7 +9361,7 @@ module.exports = __webpack_require__(/*! /var/www/resources/js/web-socket.js */"
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!********************!*\
   !*** ws (ignored) ***!
   \********************/

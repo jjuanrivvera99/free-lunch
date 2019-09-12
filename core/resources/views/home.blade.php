@@ -41,7 +41,7 @@
                         <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
                             <thead>
                                 <tr>
-                                    <th>RequestID</th>
+                                    <th>ID</th>
                                     <th>User</th>
                                     <th>Kitchener</th>
                                     <th>Plate</th>
@@ -61,4 +61,40 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('modals')
+    <div class="modal fade" id="kt_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">New order</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3 col-sm-12">Massive Request</label>
+                        <div class="col-lg-9 col-md-9 col-sm-12">
+                            <input data-switch="true" type="checkbox" checked="checked"
+                                data-on-color="success" data-off-color="warning">
+                        </div>
+                    </div>
+                    <div id="request-qty" class="form-group row col-lg-7 col-md-3 col-sm-3">
+                        <label>Quantity:</label>
+                        <input id="request-qty-input" type="number" maxlength="200" class="form-control" placeholder="Enter the quantity" require>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="submit-request" type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('scripts')
+    <script src="/js/request.js"></script>
+    <script src="/js/socket.js"></script>
 @endsection

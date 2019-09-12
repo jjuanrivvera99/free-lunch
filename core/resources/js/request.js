@@ -1,20 +1,5 @@
 'use strict';
 
-const ajax = {
-	post : (url,data,error = null, success = null) => {
-		$.ajax({
-			url: url,
-			type: 'POST',
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			},
-			data: data,
-			success:success,
-			error: error
-		});
-	}
-};
-
 var KTBootstrapSwitch = function () {
 
     // Private functions
@@ -57,13 +42,13 @@ var KTDatatablesDataSourceAjaxClient = function() {
 			},
 			sAjaxDataProp: "data",
 			columns: [
-				{data: 'RequestID'},
-				{data: 'User'},
-				{data: 'Kitchener'},
-				{data: 'Plate'},
-				{data: 'Date'},
-				{data: 'Status'},
-				{data: 'Actions', responsivePriority: -1},
+				{data: 'request_id'},
+				{data: 'user'},
+				{data: 'kitchener'},
+				{data: 'plate'},
+				{data: 'date'},
+				{data: 'status'},
+				{data: 'actions', responsivePriority: -1},
 			],
 			columnDefs: [
 				{
@@ -72,7 +57,7 @@ var KTDatatablesDataSourceAjaxClient = function() {
 					orderable: false,
 					render: function(data, type, full, meta) {
 
-						let requestID = full.RequestID;
+						let requestID = full.request_id;
 
 						let buttons =  `<span class="dropdown">
 											<a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="dropdown" aria-expanded="true">
@@ -80,26 +65,26 @@ var KTDatatablesDataSourceAjaxClient = function() {
 											</a>
 											<div class="dropdown-menu dropdown-menu-right">`;
 
-						buttons += `<a class="dropdown-item" href="#"><i class="la la-edit"></i> View</a>`;
+						buttons += `<a class="dropdown-item" href="javascript:;"><i class="la la-edit"></i> View</a>`;
 
-						if(can('request.assign') && full.Status == 1){
-							buttons += `<a class="dropdown-item actions" href="#" data-url="/request/assign" data-state="2" data-request="${requestID}"><i class="la flaticon-user-add"></i> Assign to me</a>`;
+						if(can('request.assign') && full.status == 1){
+							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/request/assign" data-state="2" data-request="${requestID}"><i class="la flaticon-user-add"></i> Assign to me</a>`;
 						}
 
-						if(can('request.ingredients') && full.Status == 2){
-							buttons += `<a class="dropdown-item actions" href="#" data-url="/request/ingredients" data-state="3" data-request="${requestID}"><i class="fa fa-pizza-slice"></i> Request Ingredients</a>`;
+						if(can('request.ingredients') && full.status == 2){
+							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/request/ingredients" data-state="3" data-request="${requestID}"><i class="fa fa-pizza-slice"></i> Request Ingredients</a>`;
 						}
 
-						if(can('request.deliver') && full.Status == 3){
-							buttons += `<a class="dropdown-item actions" href="#" data-url="/request/deliver" data-state="4" data-request="${requestID}"><i class="la flaticon-paper-plane-1"></i> Deliver Ingredients</a>`;
+						if(can('request.deliver') && full.status == 3){
+							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/request/deliver" data-state="4" data-request="${requestID}"><i class="la flaticon-paper-plane-1"></i> Deliver Ingredients</a>`;
 						}
 
 						if(can('request.buy')){
-							buttons += `<a class="dropdown-item actions" href="#" data-url="/request/buy" data-state="" data-request="${requestID}"><i class="la la-money"></i> Buy Ingredients</a>`;
+							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/request/buy" data-state="" data-request="${requestID}"><i class="la la-money"></i> Buy Ingredients</a>`;
 						}
 
-						if(can('plate.prepare') && full.Status == 4){
-							buttons += `<a class="dropdown-item actions" href="#" data-url="/request/prepare" data-state="5" data-request="${requestID}"><i class="la flaticon2-checkmark"></i> Prepare</a>`;
+						if(can('plate.prepare') && full.status == 4){
+							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/request/prepare" data-state="5" data-request="${requestID}"><i class="la flaticon2-checkmark"></i> Prepare</a>`;
 						}
 
 						buttons +=`</div>

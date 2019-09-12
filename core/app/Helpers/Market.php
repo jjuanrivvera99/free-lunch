@@ -15,7 +15,7 @@ class Market {
      * @param $response
      * @return void
      */
-    public static function updateIngredientQuantity($response, $enough = true){
+    public static function updateIngredientQuantity($response){
 
         //Get ingredient by name
         $ingredient = Ingredient::whereName($response['name'])->first();
@@ -24,13 +24,11 @@ class Market {
         $grocery = Grocery::whereIngredientId($ingredient->ingredient_id)->first();
 
         //Update quantity
-        if(($grocery->quantity == 0 && $response['quantitySold'] > 0) || !$enough){
-            $grocery->quantity += $response['quantitySold'];
-            //Save changes
-            $grocery->save();
+        $grocery->quantity += $response['quantitySold'];
+        //Save changes
+        $grocery->save();
 
-            event(new NotifyEvent(1, $response['quantitySold']." ".$response["name"]." buyed"));
-        }
+        event(new NotifyEvent(1, $response['quantitySold']." ".$response["name"]." buyed"));
     }
 
     /**
@@ -39,7 +37,7 @@ class Market {
      * @param string $ingredient
      * @return json
      */
-    public static function buyIngredient($ingredient, $enough = true){
+    public static function buyIngredient($ingredient){
         $client = new Client([
             'base_uri' => 'https://recruitment.alegra.com',
             'timeout'  => 0,
@@ -59,7 +57,7 @@ class Market {
 
         $response["name"] = $ingredient;
 
-        self::updateIngredientQuantity($response, $enough);
+        self::updateIngredientQuantity($response);
 
         return $response;
     }

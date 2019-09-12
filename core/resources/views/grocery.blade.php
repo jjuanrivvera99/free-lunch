@@ -9,6 +9,13 @@
             <div class="kt-subheader   kt-grid__item" id="kt_subheader">
                 <div class="kt-container ">
                     <div class="kt-subheader__main">
+                            <h3 class="kt-subheader__title">Dashboard</h3>
+                            @can('plate.create')
+                                <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+                                <a href="javascript:;" data-name="all" data-url="/grocery/buy"  class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10 actions">
+                                    Buy all
+                                </a>
+                            @endcan
                     </div>
                 </div>
             </div>
@@ -31,12 +38,14 @@
                     <div class="kt-portlet__body">
 
                         <!--begin: Datatable -->
-                        <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
+                        <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_grocery">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Desc</th>
+                                    <th>Quantity</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                         </table>
@@ -50,4 +59,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('scripts')
+    <script src="/js/grocery.js"></script>
+    <script src="/js/socket.js"></script>
 @endsection

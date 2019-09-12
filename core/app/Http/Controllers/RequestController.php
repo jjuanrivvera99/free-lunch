@@ -28,12 +28,12 @@ class RequestController extends Controller
         $count = 0;
 
         foreach ($requestModel as $value) {
-            $requests[$count]['RequestID']    = $value->request_id;
-            $requests[$count]['User']         = $value->user->name;
-            $requests[$count]['Kitchener']    = $this->validateKitchener($value->kitchener);
-            $requests[$count]['Plate']        = $this->validatePlate($value->plate);
-            $requests[$count]['Date']         = $value->date;
-            $requests[$count]['Status']       = $value->request_state_id;
+            $requests[$count]['request_id']    = $value->request_id;
+            $requests[$count]['user']         = $value->user->name;
+            $requests[$count]['kitchener']    = $this->validateKitchener($value->kitchener);
+            $requests[$count]['plate']        = $this->validatePlate($value->plate);
+            $requests[$count]['date']         = $value->date;
+            $requests[$count]['status']       = $value->request_state_id;
             $count++;
         }
 
@@ -74,6 +74,10 @@ class RequestController extends Controller
         $kitchener          = $user->kitchener;
         $plate              = Plate::inRandomOrder()->first();
         $requestModel       = RequestModel::findOrFail($request_id);
+
+        if(!$kitchener){
+            return abort(400, 'You are not a kitchener');
+        }
 
         if($kitchener->busy){
             return abort(400, 'The kitchener is busy');
@@ -180,6 +184,4 @@ class RequestController extends Controller
 
         return $kitchener_name;
     }
-
-    
 }

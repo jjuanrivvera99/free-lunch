@@ -22,4 +22,19 @@
 
         return response;
     }
+
+    const ajax = {
+        post : (url,data,error = null, success = null) => {
+            $.ajax({
+                url: url,
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: data,
+                success:success,
+                error: error
+            });
+        }
+    };
 </script>

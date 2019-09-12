@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use URL;
 use SEO;
 use App\Jobs\TestJobs;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -28,6 +28,8 @@ class HomeController extends Controller
     {
         SEO::opengraph()->setUrl(URL::current());
 
-        return view('home');
+        $menu = 'orders';
+
+        return view('home', compact('menu'));
     }
 }
