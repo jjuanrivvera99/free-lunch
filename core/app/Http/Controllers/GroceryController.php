@@ -48,6 +48,13 @@ class GroceryController extends Controller
         BuyIngredientsJob::dispatch($name);
     }
 
+
+    /**
+     * Deliver ingredients for order
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
     public function deliverRequestIngredients(Request $request){
         $user              = Auth::user();
         $request_id        = $request->request_id;

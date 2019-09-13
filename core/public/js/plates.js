@@ -132,7 +132,7 @@ var KTDatatablesDataSourceAjaxClient = function () {
         render: function render(data, type, full, meta) {
           var id = full.plate_id;
           var buttons = "<span class=\"dropdown\">\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-sm btn-clean btn-icon btn-icon-md\" data-toggle=\"dropdown\" aria-expanded=\"true\">\n\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"la la-ellipsis-h\"></i>\n\t\t\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"dropdown-menu dropdown-menu-right\">";
-          buttons += "<a class=\"dropdown-item\" href=\"javascript:;\"><i class=\"la la-edit\"></i> View Ingredients</a>";
+          buttons += "<a class=\"dropdown-item actions\" href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#kt_modal\" data-plate=\"".concat(id, "\" data-url=\"/plate/ingredients\"><i class=\"la la-edit\"></i> View Ingredients</a>");
           buttons += "</div>\n\t\t\t\t\t\t\t</span>";
           return buttons;
         }
@@ -149,19 +149,21 @@ var KTDatatablesDataSourceAjaxClient = function () {
 }();
 
 $(document).on("click", ".actions", function (e) {
-  var requestId = $(this).data('request');
+  var id = $(this).data('plate');
   var url = $(this).data('url');
-  var state = $(this).data('state');
   var data = {
-    request_id: requestId,
-    request_state_id: state
+    plate_id: id
+  };
+
+  var success = function success(response) {
+    $("#ingredients-table").html(response);
   };
 
   var error = function error(response) {
     toastr['error'](response.responseJSON.message);
   };
 
-  ajax.post(url, data, error);
+  ajax.post(url, data, error, success);
 });
 $(document).ready(function () {
   KTDatatablesDataSourceAjaxClient.init();

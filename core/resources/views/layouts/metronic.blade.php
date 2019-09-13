@@ -130,7 +130,7 @@
 								<div class="kt-header__topbar kt-grid__item kt-grid__item--fluid">
 
 									<!--begin: Notifications -->
-									<div class="kt-header__topbar-item dropdown">
+									{{-- <div class="kt-header__topbar-item dropdown">
 										<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
 											<span class="kt-header__topbar-icon kt-header__topbar-icon--success"><i class="flaticon2-bell-alarm-symbol"></i></span>
 											<span class="kt-hidden kt-badge kt-badge--danger"></span>
@@ -161,21 +161,7 @@
 												<!--end: Head -->
 												<div class="tab-content">
 													<div class="tab-pane active show" id="topbar_notifications_notifications" role="tabpanel">
-														{{-- <div class="kt-notification kt-margin-t-10 kt-margin-b-10 kt-scroll" data-scroll="true" data-height="300" data-mobile-height="200">
-															<a href="#" class="kt-notification__item">
-																<div class="kt-notification__item-icon">
-																	<i class="flaticon2-line-chart kt-font-success"></i>
-																</div>
-																<div class="kt-notification__item-details">
-																	<div class="kt-notification__item-title">
-																		New order has been received
-																	</div>
-																	<div class="kt-notification__item-time">
-																		2 hrs ago
-																	</div>
-																</div>
-															</a>
-														</div> --}}
+														
 														<div class="kt-grid kt-grid--ver" style="min-height: 200px;">
 															<div class="kt-grid kt-grid--hor kt-grid__item kt-grid__item--fluid kt-grid__item--middle">
 																<div class="kt-grid__item kt-grid__item--middle kt-align-center">
@@ -208,7 +194,7 @@
 												</div>
 											</form>
 										</div>
-									</div>
+									</div> --}}
 
 									<!--end: Notifications -->
 

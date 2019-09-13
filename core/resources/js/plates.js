@@ -41,7 +41,7 @@ var KTDatatablesDataSourceAjaxClient = function() {
 											</a>
 											<div class="dropdown-menu dropdown-menu-right">`;
 
-						buttons += `<a class="dropdown-item" href="javascript:;"><i class="la la-edit"></i> View Ingredients</a>`;
+						buttons += `<a class="dropdown-item actions" href="javascript:;" data-toggle="modal" data-target="#kt_modal" data-plate="${id}" data-url="/plate/ingredients"><i class="la la-edit"></i> View Ingredients</a>`;
 
 						buttons +=`</div>
 							</span>`;
@@ -65,20 +65,22 @@ var KTDatatablesDataSourceAjaxClient = function() {
 }();
 
 $(document).on("click",".actions",function(e) {
-	let requestId = $(this).data('request');
+	let id = $(this).data('plate');
 	let url = $(this).data('url');
-	let state = $(this).data('state');
 	
 	let data = {
-		request_id: requestId,
-		request_state_id: state,
+		plate_id: id,
+	}
+
+	let success = (response) => {
+		$("#ingredients-table").html(response);
 	}
 
 	let error = (response) => {
 		toastr['error'](response.responseJSON.message);
 	}
 
-	ajax.post(url, data, error);
+	ajax.post(url, data, error, success);
 });
 
 $(document).ready(function() {

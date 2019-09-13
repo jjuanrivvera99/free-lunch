@@ -44,7 +44,7 @@ class PlateTableSeeder extends Seeder
 
         Plate::create([
             "plate_state_id" => 1,
-            "name" => "Letucce Wraps",
+            "name" => "Lettuce Wraps",
             "description" => "Pork stuffed lettuce."
         ]);
     }

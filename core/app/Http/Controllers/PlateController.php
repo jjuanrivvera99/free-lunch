@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use SEO;
 use URL;
 use App\Plate;
+use App\PlateIngredient;
 use Illuminate\Http\Request;
 
 class PlateController extends Controller
@@ -26,29 +27,40 @@ class PlateController extends Controller
     public function datatable(){
         $response = [];
 
-        $response["data"] = Plate::select('plate_id', 'name', 'description')->orderBy('plate_id')->get();
+        $response["data"] = Plate::select('plate_id', 'name', 'description')
+                                ->orderBy('plate_id')
+                                ->get();
+
+        return $response;
+    }
+
+    public function getIngredients(Request $request){
+        $plate_id = $request->plate_id;
+
+        $ingredients = $this->getPlateIngredients($plate_id);
+
+        $response = "";
+        
+        foreach ($ingredients as $key => $ingredient) {
+            $index = $key+1;
+
+            $response .= "<tr><th scope=\"row\">".$index."</th>
+                        <td>".$ingredient->name."</td>
+                        <td>".$ingredient->qty."</td></tr>";
+        }
 
         return $response;
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Get ingredients for the plate
+     * 
+     * @param number $plate_id 
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function getPlateIngredients($plate_id){
+        return Plate::where('plate.plate_id',$plate_id)
+                    ->join('plate_ingredient','plate.plate_id','=','plate_ingredient.plate_id')
+                    ->join('ingredient','plate_ingredient.ingredient_id','=','ingredient.ingredient_id')
+                    ->select('ingredient.ingredient_id','ingredient.name','plate_ingredient.qty')->get();
     }
 }

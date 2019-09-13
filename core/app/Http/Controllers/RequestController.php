@@ -50,9 +50,18 @@ class RequestController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+
         RequestIngredientsJob::dispatch($user, $request->quantity);
+
+        return response()->json([]);
     }
 
+    /**
+     * Assign request to user
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
     public function assign(Request $request){
 
         $user               = Auth::user();
@@ -88,7 +97,7 @@ class RequestController extends Controller
      * Request order's ingredients to grocery
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function requestIngredients(Request $request)
     {
@@ -121,7 +130,7 @@ class RequestController extends Controller
      * Prepare the order
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function preparePlate(Request $request)
     {

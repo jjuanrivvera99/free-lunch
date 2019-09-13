@@ -51,4 +51,12 @@ class Plate extends Model implements Auditable
         'name',
         'description',
     ];
+
+    // /**
+    //  * The ingredients that belong to the plate.
+    //  */
+    // public function ingredients(){
+
+    //     return $this->belongsToMany('App\Ingredient', 'plate_ingredient', 'plate_id', 'plate_id')->withPivot('qty');
+    // }
 }
