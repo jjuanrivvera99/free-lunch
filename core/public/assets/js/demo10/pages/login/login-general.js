@@ -160,8 +160,7 @@ var KTLoginGeneral = function() {
                 error: function(response, status, xhr, $form){
                     btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
 	                // form.validate().resetForm();
-                    toastr['error'](response.message);
-
+                    toastr['error']("An error has ocurred");
                 }
             });
         });

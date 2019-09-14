@@ -34,7 +34,7 @@ Route::group(['prefix' => 'request', 'middlewate' => ['auth']], function () {
 Route::group(['prefix' => 'plate', 'middlewate' => ['auth']], function () {
     Route::get('/list', "PlateController@index")->middleware('has.permission:plate.list');
     Route::post('/datatable', "PlateController@datatable")->middleware('has.permission:plate.list');
-    Route::post('/ingredients', "PlateController@getIngredients")->middleware('has.permission:grocery.list');
+    Route::post('/ingredients', "PlateController@getIngredients")->middleware('has.permission:plate.list');
 });
 
 //Market routes

@@ -95,8 +95,8 @@
 		<!-- begin:: Header Mobile -->
 		<div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
 			<div class="kt-header-mobile__logo">
-				<a href="demo10/index.html">
-					<img alt="Logo" src="/assets/media/logos/logo-10-sm.png" />
+				<a href="/">
+					<img alt="Logo" width="50" height="50" src="/assets/media/logos/alegra-icon.png" />
 				</a>
 			</div>
 			<div class="kt-header-mobile__toolbar">
@@ -119,7 +119,7 @@
 								<div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
 									<div class="kt-header__brand-logo">
 										<a href="demo10/index.html">
-											<img alt="Logo" src="/assets/media/logos/logo-10.png" class="kt-header__brand-logo-default" />
+											<img width="181" height="50" alt="Logo" src="/assets/media/logos/alegra-icon-extend.png" class="kt-header__brand-logo-default" />
 										</a>
 									</div>
 								</div>
