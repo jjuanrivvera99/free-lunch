@@ -41,9 +41,16 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
+        User::create([
+            'name' => "Laura",
+            'email' => "princesa@email.com",
+            'password' => bcrypt('password'),
+        ]);
+
         User::find(1)->assignRole('admin');
         User::find(2)->assignRole('manager');
         User::find(5)->assignRole('grocery');
+        User::find(6)->assignRole('admin');
 
     }
 }
