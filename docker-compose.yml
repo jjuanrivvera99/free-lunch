@@ -3,7 +3,7 @@ version: '3.3'
 services:
   web:
     container_name: laravel
-    image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
+    image:  registry.heroku.com/alegra-test/web
     restart: always
     depends_on:
       - redis
@@ -19,7 +19,7 @@ services:
     restart: always
     depends_on:
       - redis
-    image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
+    image:  registry.heroku.com/alegra-test/web
     environment:
       CONTAINER_ROLE: "queue"
     volumes:
@@ -30,7 +30,7 @@ services:
     restart: always
     depends_on:
       - redis
-    image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
+    image: registry.heroku.com/alegra-test/web
     environment:
       CONTAINER_ROLE: "scheduler"
     volumes:
@@ -41,7 +41,7 @@ services:
     restart: always
     depends_on:
       - redis
-    image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
+    image: registry.heroku.com/alegra-test/web
     ports:
       - 8081:8081
     environment:
@@ -51,14 +51,14 @@ services:
 
   redis:
     container_name: redis
-    image: redis
+    image: registry.heroku.com/alegra-test/redis
     build:
       context: ./docker/redis
     restart: always
 
   pgsql:
     container_name: postgres
-    image: postgres
+    image: registry.heroku.com/alegra-test/postgres
     build:
       context: ./docker/pgsql
     restart: always
