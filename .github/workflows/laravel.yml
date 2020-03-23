@@ -33,4 +33,5 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
+        TELESCOPE_ENABLED: false
       run: vendor/bin/phpunit
