@@ -3,7 +3,7 @@ version: '3.3'
 services:
   web:
     container_name: laravel
-    image:  registry.heroku.com/alegra-test/web
+    image:  jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
     restart: always
     depends_on:
       - redis
@@ -12,53 +12,53 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./core:/var/www
+      - ./:/var/www
 
   queue:
     container_name: queue
     restart: always
     depends_on:
       - redis
-    image:  registry.heroku.com/alegra-test/web
+    image:  jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
     environment:
       CONTAINER_ROLE: "queue"
     volumes:
-      - "./core:/var/www/"
+      - "./:/var/www/"
 
   scheduler:
     container_name: scheduler
     restart: always
     depends_on:
       - redis
-    image: registry.heroku.com/alegra-test/web
+    image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
     environment:
       CONTAINER_ROLE: "scheduler"
     volumes:
-      - "./core:/var/www/"
+      - "./:/var/www/"
 
   socket-io:
     container_name: socket-io
     restart: always
     depends_on:
       - redis
-    image: registry.heroku.com/alegra-test/web
+    image: jjuanrivvera99/ubuntu-apache-php-postgresql:alegra
     ports:
       - 8081:8081
     environment:
       CONTAINER_ROLE: "socket.io"
     volumes:
-      - "./core:/var/www/"
+      - "./:/var/www/"
 
   redis:
     container_name: redis
-    image: registry.heroku.com/alegra-test/redis
+    image: redis
     build:
       context: ./docker/redis
     restart: always
 
   pgsql:
     container_name: postgres
-    image: registry.heroku.com/alegra-test/postgres
+    image: postgres
     build:
       context: ./docker/pgsql
     restart: always
@@ -68,7 +68,7 @@ services:
       POSTGRES_PASSWORD: example
     volumes:
       - pgdata:/var/lib/postgresql/data
-  
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
