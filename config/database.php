@@ -1,5 +1,7 @@
 <?php
 
+$DATABASE_URL = parse_url(env('DATABASE_URL'));
+
 return [
 
     /*
@@ -42,11 +44,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_HOST', $DATABASE_URL['host']),
+            'port' => env('DB_PORT', $DATABASE_URL['port']),
+            'database' => env('DB_DATABASE', ltrim($DATABASE_URL['path'], '/')),
+            'username' => env('DB_USERNAME', $DATABASE_URL['user']),
+            'password' => env('DB_PASSWORD', $DATABASE_URL['pass']),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
