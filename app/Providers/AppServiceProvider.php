@@ -24,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Redis::enableEvents();
+        if (config('queue.default') == 'redis') {
+            Redis::enableEvents();
+        }
     }
 }
