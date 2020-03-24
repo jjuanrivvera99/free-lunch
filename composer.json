@@ -19,7 +19,8 @@
         "laravel/telescope": "^2.0",
         "laravel/tinker": "^1.0",
         "owen-it/laravel-auditing": "^9.2",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "sentry/sentry-laravel": "1.7.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
