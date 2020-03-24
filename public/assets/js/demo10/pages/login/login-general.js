@@ -99,13 +99,13 @@ let KTLoginGeneral = function () {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (response, status, xhr, $form) {
-                    window.location.href = '/';
-                },
-                error: function (response, status, xhr, $form) {
-                    if (status === 403) {
+                    if (response.responseJSON.message === "Your email address is not verified.") {
                         window.location.href = '/';
                     }
 
+                    window.location.href = '/';
+                },
+                error: function (response, status, xhr, $form) {
                     setTimeout(function () {
                         btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
                         showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
@@ -162,14 +162,14 @@ let KTLoginGeneral = function () {
                     }, 2000);
                 },
                 error: function (response, status, xhr, $form) {
-                    if (status === 403) {
+                    if (response.responseJSON.message === "Your email address is not verified.") {
                         window.location.href = '/';
                     }
 
                     btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
                     // form.validate().resetForm();
                     toastr['error']("An error has ocurred");
-                }
+                },
             });
         });
     };
