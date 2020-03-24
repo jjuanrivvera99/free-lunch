@@ -100,7 +100,7 @@ class GroceryController extends Controller
         event(new NotifyEvent($user->id, "The order $request_id is ready to prepare"));
     }
 
-    public function buyRequestIngredients(Request $request): void
+    public function buyRequestIngredients(Request $request)
     {
         $request_id        = $request->request_id;
         $requestModel      = RequestModel::findOrFail($request_id);
