@@ -8,7 +8,7 @@ use Caffeinated\Shinobi\Traits\ShinobiTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements Auditable
+class User extends Authenticatable implements Auditable, MustVerifyEmail
 {
     use Notifiable;
     use ShinobiTrait;
