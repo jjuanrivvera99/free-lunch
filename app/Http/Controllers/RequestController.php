@@ -11,6 +11,7 @@ use App\Ingredient;
 use App\Events\NotifyEvent;
 use Illuminate\Http\Request;
 use App\Request as RequestModel;
+use Illuminate\Http\JsonResponse;
 use App\Jobs\RequestIngredientsJob;
 
 class RequestController extends Controller
@@ -18,7 +19,7 @@ class RequestController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index()
     {
@@ -44,7 +45,7 @@ class RequestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return void
      */
     public function store(Request $request)
@@ -57,11 +58,11 @@ class RequestController extends Controller
     /**
      * Assign request to user
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return void
      */
-    public function assign(Request $request){
-
+    public function assign(Request $request)
+    {
         $user               = Auth::user();
         $request_id         = $request->request_id;
         $request_state_id   = $request->request_state_id;
@@ -69,15 +70,15 @@ class RequestController extends Controller
         $plate              = Plate::inRandomOrder()->first();
         $requestModel       = RequestModel::findOrFail($request_id);
 
-        if(!$kitchener){
+        if (!$kitchener) {
             return abort(400, 'You are not a kitchener');
         }
 
-        if($kitchener->busy){
+        if ($kitchener->busy) {
             return abort(400, 'The kitchener is busy');
         }
 
-        if($requestModel->kitchener_id){
+        if ($requestModel->kitchener_id) {
             return abort(400, 'The order is already assigned');
         }
 
@@ -87,33 +88,32 @@ class RequestController extends Controller
             'plate_id' => $plate->plate_id,
         ]);
 
-        event(new NotifyEvent($user->id, "The order ".$request_id." was assigned to ".$user->name));
+        event(new NotifyEvent($user->id, "The order " . $request_id . " was assigned to " . $user->name));
     }
 
 
     /**
      * Request order's ingredients to grocery
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return void
      */
     public function requestIngredients(Request $request)
     {
         $user               = Auth::user();
         $kitchener          = $user->kitchener;
-        $request_state_id   = $request->request_state_id;
         $request_id         = $request->request_id;
         $requestModel       = RequestModel::findOrFail($request_id);
 
-        if(!$kitchener){
+        if (!$kitchener) {
             return abort(400, 'You are not a kitchener');
         }
 
-        if($requestModel->kitchener_id != $kitchener->kitchener_id){
+        if ($requestModel->kitchener_id != $kitchener->kitchener_id) {
             return abort(400, 'The order is not assigned to you');
         }
 
-        if($requestModel->request_state_id != 2){
+        if ($requestModel->request_state_id != 2) {
             return abort(400, 'The order need to be on assigned state');
         }
 
@@ -127,26 +127,25 @@ class RequestController extends Controller
     /**
      * Prepare the order
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return void
      */
     public function preparePlate(Request $request)
     {
         $user               = Auth::user();
         $kitchener          = $user->kitchener;
-        $request_state_id   = $request->request_state_id;
         $request_id         = $request->request_id;
         $requestModel       = RequestModel::findOrFail($request_id);
 
-        if(!$kitchener){
+        if (!$kitchener) {
             return abort(400, 'You are not a kitchener');
         }
 
-        if($requestModel->kitchener_id != $kitchener->kitchener_id){
+        if ($requestModel->kitchener_id != $kitchener->kitchener_id) {
             return abort(400, 'The order is not assigned to you');
         }
 
-        if($requestModel->request_state_id != 4){
+        if ($requestModel->request_state_id != 4) {
             return abort(400, 'The order need to be ready');
         }
 
@@ -157,10 +156,11 @@ class RequestController extends Controller
         event(new NotifyEvent($user->id, "Order $request_id complete"));
     }
 
-    public function validatePlate($plate){
+    public function validatePlate($plate)
+    {
         $plate_name = 'Unassigned';
 
-        if($plate){
+        if ($plate) {
             $plate = Plate::findOrFail($plate->plate_id);
             $plate_name = $plate->name;
         }
@@ -168,10 +168,11 @@ class RequestController extends Controller
         return $plate_name;
     }
 
-    public function validateKitchener($kitchener){
+    public function validateKitchener($kitchener)
+    {
         $kitchener_name = 'Unassigned';
 
-        if($kitchener){
+        if ($kitchener) {
             $kitchener = User::findOrFail($kitchener->user_id);
             $kitchener_name = $kitchener->name;
         }

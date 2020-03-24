@@ -7,9 +7,8 @@ use OwenIt\Auditing\Contracts\Auditable;
 
 class Grocery extends Model implements Auditable
 {
-
     use \OwenIt\Auditing\Auditable;
-    
+
     /**
      * The table associated with the model.
      *

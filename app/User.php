@@ -10,7 +10,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements Auditable
 {
-    use Notifiable, ShinobiTrait, \OwenIt\Auditing\Auditable;
+    use Notifiable;
+    use ShinobiTrait;
+    use \OwenIt\Auditing\Auditable;
 
     /**
      * Attributes to include in the Audit.
@@ -59,14 +61,16 @@ class User extends Authenticatable implements Auditable
     /**
      * Get all user's request
      */
-    public function requests(){
+    public function requests()
+    {
         return $this->hasMany('App\Request', 'user_id');
     }
 
     /**
      * Get kitchener
      */
-    public function kitchener(){
+    public function kitchener()
+    {
         return $this->hasOne('App\Kitchener', 'user_id');
     }
 }

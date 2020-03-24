@@ -57,28 +57,32 @@ class Request extends Model implements Auditable
     /**
      * Get user that owns the request
      */
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
     /**
      * Get user that owns the request
      */
-    public function kitchener(){
+    public function kitchener()
+    {
         return $this->belongsTo('App\Kitchener', 'kitchener_id', 'kitchener_id');
     }
 
     /**
      * Get user that owns the request
      */
-    public function status(){
+    public function status()
+    {
         return $this->belongsTo('App\RequestState', 'request_state_id', 'request_state_id');
     }
 
     /**
      * Get user that owns the request
      */
-    public function plate(){
+    public function plate()
+    {
         return $this->belongsTo('App\Plate', 'plate_id', 'plate_id');
     }
 }
