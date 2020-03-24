@@ -102,6 +102,10 @@ let KTLoginGeneral = function () {
                     window.location.href = '/';
                 },
                 error: function (response, status, xhr, $form) {
+                    if (status === 403) {
+                        window.location.href = '/';
+                    }
+
                     setTimeout(function () {
                         btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
                         showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
@@ -158,7 +162,7 @@ let KTLoginGeneral = function () {
                     }, 2000);
                 },
                 error: function (response, status, xhr, $form) {
-                    if (status === 403 && response.message === "Your email address is not verified.") {
+                    if (status === 403) {
                         window.location.href = '/';
                     }
 
