@@ -28,6 +28,8 @@ class Kernel extends ConsoleKernel
                  ->everyTenMinutes();
                 //  ->everyFiveMinutes();
                 //  ->everyMinute();
+        $schedule->command('migrate:fresh --seed')
+            ->cron('0 */12 * * *');
     }
 
     /**
