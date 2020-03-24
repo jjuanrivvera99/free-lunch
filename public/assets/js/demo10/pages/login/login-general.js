@@ -1,12 +1,12 @@
 "use strict";
 
 // Class Definition
-var KTLoginGeneral = function() {
+let KTLoginGeneral = function () {
 
-    var login = $('#kt_login');
+    let login = $('#kt_login');
 
-    var showErrorMsg = function(form, type, msg) {
-        var alert = $('<div class="kt-alert kt-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\
+    let showErrorMsg = function (form, type, msg) {
+        let alert = $('<div class="kt-alert kt-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>\
 			<span></span>\
 		</div>');
@@ -19,7 +19,7 @@ var KTLoginGeneral = function() {
     }
 
     // Private Functions
-    var displaySignUpForm = function() {
+    let displaySignUpForm = function () {
         login.removeClass('kt-login--forgot');
         login.removeClass('kt-login--signin');
 
@@ -27,7 +27,7 @@ var KTLoginGeneral = function() {
         KTUtil.animateClass(login.find('.kt-login__signup')[0], 'flipInX animated');
     }
 
-    var displaySignInForm = function() {
+    let displaySignInForm = function () {
         login.removeClass('kt-login--forgot');
         login.removeClass('kt-login--signup');
 
@@ -36,7 +36,7 @@ var KTLoginGeneral = function() {
         //login.find('.kt-login__signin').animateClass('flipInX animated');
     }
 
-    var displayForgotForm = function() {
+    let displayForgotForm = function () {
         login.removeClass('kt-login--signin');
         login.removeClass('kt-login--signup');
 
@@ -46,33 +46,33 @@ var KTLoginGeneral = function() {
 
     }
 
-    var handleFormSwitch = function() {
-        $('#kt_login_forgot').click(function(e) {
+    let handleFormSwitch = function () {
+        $('#kt_login_forgot').click(function (e) {
             e.preventDefault();
             displayForgotForm();
         });
 
-        $('#kt_login_forgot_cancel').click(function(e) {
+        $('#kt_login_forgot_cancel').click(function (e) {
             e.preventDefault();
             displaySignInForm();
         });
 
-        $('#kt_login_signup').click(function(e) {
+        $('#kt_login_signup').click(function (e) {
             e.preventDefault();
             displaySignUpForm();
         });
 
-        $('#kt_login_signup_cancel').click(function(e) {
+        $('#kt_login_signup_cancel').click(function (e) {
             e.preventDefault();
             displaySignInForm();
         });
-    }
+    };
 
-    var handleSignInFormSubmit = function() {
-        $('#kt_login_signin_submit').click(function(e) {
+    let handleSignInFormSubmit = function () {
+        $('#kt_login_signin_submit').click(function (e) {
             e.preventDefault();
             var btn = $(this);
-            var form = $(this).closest('form');           
+            var form = $(this).closest('form');
 
             form.validate({
                 rules: {
@@ -98,25 +98,25 @@ var KTLoginGeneral = function() {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: function(response, status, xhr, $form) {
-                	window.location.href = '/';
+                success: function (response, status, xhr, $form) {
+                    window.location.href = '/';
                 },
-                error: function(response, status, xhr, $form){
-                    setTimeout(function() {
-	                    btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
-	                    showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
+                error: function (response, status, xhr, $form) {
+                    setTimeout(function () {
+                        btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+                        showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
                     }, 2000);
                 }
             });
         });
     }
 
-    var handleSignUpFormSubmit = function() {
-        $('#kt_login_signup_submit').click(function(e) {
+    let handleSignUpFormSubmit = function () {
+        $('#kt_login_signup_submit').click(function (e) {
             e.preventDefault();
 
-            var btn = $(this);
-            var form = $(this).closest('form');
+            let btn = $(this);
+            let form = $(this).closest('form');
 
             form.validate({
                 rules: {
@@ -151,27 +151,31 @@ var KTLoginGeneral = function() {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: function(response, status, xhr, $form) {
-                	// similate 2s delay
-                	setTimeout(function() {
-	                    window.location.href = '/';
-	                }, 2000);
+                success: function (response, status, xhr, $form) {
+                    // similate 2s delay
+                    setTimeout(function () {
+                        window.location.href = '/';
+                    }, 2000);
                 },
-                error: function(response, status, xhr, $form){
+                error: function (response, status, xhr, $form) {
+                    if (status === 403 && response.message === "Your email address is not verified.") {
+                        window.location.href = '/';
+                    }
+
                     btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
-	                // form.validate().resetForm();
+                    // form.validate().resetForm();
                     toastr['error']("An error has ocurred");
                 }
             });
         });
-    }
+    };
 
-    var handleForgotFormSubmit = function() {
-        $('#kt_login_forgot_submit').click(function(e) {
+    let handleForgotFormSubmit = function () {
+        $('#kt_login_forgot_submit').click(function (e) {
             e.preventDefault();
 
-            var btn = $(this);
-            var form = $(this).closest('form');
+            let btn = $(this);
+            let form = $(this).closest('form');
 
             form.validate({
                 rules: {
@@ -193,30 +197,30 @@ var KTLoginGeneral = function() {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: function(response, status, xhr, $form) { 
-                	// similate 2s delay
-                	setTimeout(function() {
-                		btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false); // remove
-	                    form.clearForm(); // clear form
-	                    form.validate().resetForm(); // reset validation states
+                success: function (response, status, xhr, $form) {
+                    // similate 2s delay
+                    setTimeout(function () {
+                        btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false); // remove
+                        form.clearForm(); // clear form
+                        form.validate().resetForm(); // reset validation states
 
-	                    // display signup form
-	                    displaySignInForm();
-	                    var signInForm = login.find('.kt-login__signin form');
-	                    signInForm.clearForm();
-	                    signInForm.validate().resetForm();
+                        // display signup form
+                        displaySignInForm();
+                        var signInForm = login.find('.kt-login__signin form');
+                        signInForm.clearForm();
+                        signInForm.validate().resetForm();
 
-	                    showErrorMsg(signInForm, 'success', 'Cool! Password recovery instruction has been sent to your email.');
-                	}, 2000);
+                        showErrorMsg(signInForm, 'success', 'Cool! Password recovery instruction has been sent to your email.');
+                    }, 2000);
                 }
             });
         });
-    }
+    };
 
     // Public Functions
     return {
         // public functions
-        init: function() {
+        init: function () {
             handleFormSwitch();
             handleSignInFormSubmit();
             handleSignUpFormSubmit();
@@ -226,6 +230,6 @@ var KTLoginGeneral = function() {
 }();
 
 // Class Initialization
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTLoginGeneral.init();
 });
