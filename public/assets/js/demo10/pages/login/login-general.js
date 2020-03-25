@@ -99,7 +99,7 @@ let KTLoginGeneral = function () {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (response, status, xhr, $form) {
-                    if (response.responseJSON.message === "Your email address is not verified.") {
+                    if (response.responseJSON && response.responseJSON.message === "Your email address is not verified.") {
                         window.location.href = '/';
                     }
 
