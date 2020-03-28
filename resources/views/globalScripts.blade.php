@@ -1,6 +1,8 @@
 <script>
     var host = "{{ config('app.publisher_url') }}";
     var port = "{{ config('app.broadcast_port') }}";
+    var sessionLifeTime = "{{config('session.lifetime')}}";
+    var sessionLifeTimeSeconds = sessionLifeTime * 60 * 1000;
     var dataTable = null;
 
     function can(permission){

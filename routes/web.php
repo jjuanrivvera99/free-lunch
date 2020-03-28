@@ -18,6 +18,9 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/keep-alive', function () {
+    return "true";
+})->name('keep-alive');
 
 //Requests routes
 Route::group(['prefix' => 'request', 'middleware' => ['auth', 'verified']], function () {

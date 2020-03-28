@@ -2,7 +2,7 @@
 
 
 @php
-	
+
 	$user = Auth::user();
 
 	\JavaScript::put([
@@ -19,7 +19,7 @@
 
 		<meta charset="utf-8" />
         <title>{{ config('app.name', 'FreeLunch') }}</title>
-        
+
 		<!-- SEO Stuff -->
         {!! SEO::generate() !!}
 
@@ -161,7 +161,7 @@
 												<!--end: Head -->
 												<div class="tab-content">
 													<div class="tab-pane active show" id="topbar_notifications_notifications" role="tabpanel">
-														
+
 														<div class="kt-grid kt-grid--ver" style="min-height: 200px;">
 															<div class="kt-grid kt-grid--hor kt-grid__item kt-grid__item--fluid kt-grid__item--middle">
 																<div class="kt-grid__item kt-grid__item--middle kt-align-center">
@@ -254,7 +254,7 @@
 														href="/plate/list" class="kt-menu__link"><span
 															class="kt-menu__link-text">Plates</span><i
 															class="kt-menu__ver-arrow la la-angle-right"></i></a>
-													
+
 												</li>
 											@endcan
 
@@ -304,7 +304,7 @@
 
         <!-- Modal -->
         @section('modals')
-            
+
 		@show
         <!--begin::Modal-->
 
@@ -388,17 +388,18 @@
 		<script src="/assets/vendors/general/jquery.repeater/src/jquery.input.js" type="text/javascript"></script>
 		<script src="/assets/vendors/general/jquery.repeater/src/repeater.js" type="text/javascript"></script>
         <script src="/assets/vendors/general/dompurify/dist/purify.js" type="text/javascript"></script>
-        
+
 		<!--end:: Global Optional Vendors -->
-        
+
 		<!--begin::Global Theme Bundle(used by all pages) -->
         <script src="/assets/js/demo10/scripts.bundle.js" type="text/javascript"></script>
         <script src="/assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
-
 		@include('globalScripts')
-		
+        <script src="/assets/vendors/custom/vendors/bootstrap-session-timeout/dist/bootstrap-session-timeout.js" type="text/javascript"></script>
+        <script src="/assets/js/demo10/pages/components/utils/session-timeout.js" type="text/javascript"></script>
+
 		@section('scripts')
-			
+
 		@show
 
 		<!--end::Global Theme Bundle -->
