@@ -187,7 +187,10 @@
             timer = setTimeout(function() {
                 // Check for onRedir callback function and if there is none, launch redirect
                 if (typeof opt.onRedir !== 'function') {
-                    window.location = opt.redirUrl;
+                    ajax.post('logout');
+                    setTimeout(function () {
+                        window.location.href = "/";
+                    }, 1000);
                 } else {
                     opt.onRedir(opt);
                 }
