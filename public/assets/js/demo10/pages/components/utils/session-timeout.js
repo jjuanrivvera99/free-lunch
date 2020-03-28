@@ -9,8 +9,8 @@ var KTSessionTimeoutDemo = function () {
             keepAliveUrl: '/keep-alive',
             redirUrl: '/',
             logoutUrl: '/logout',
-            warnAfter: sessionLifeTimeSeconds - 10000, //warn afters session lifetime subtract 60 seconds
-            redirAfter: sessionLifeTimeSeconds + 10000, //redirect after 10 secons,
+            warnAfter: sessionLifeTimeSeconds - 30000, //warn afters session lifetime subtract 60 seconds
+            redirAfter: sessionLifeTimeSeconds - 10000, //redirect after 10 secons,
             ignoreUserActivity: true,
             countdownMessage: 'Redirecting in {timer} seconds.',
             countdownBar: true
