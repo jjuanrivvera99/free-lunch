@@ -83,7 +83,10 @@
 
             // "Logout" button click
             $('#session-timeout-dialog-logout').on('click', function() {
-                window.location = opt.logoutUrl;
+                ajax.post('logout');
+                setTimeout(function () {
+                    window.location.href = "/";
+                }, 1000);
             });
             // "Stay Connected" button click
             $('#session-timeout-dialog').on('hide.bs.modal', function() {
@@ -130,6 +133,9 @@
                 // Ping keepalive URL using (if provided) data and type from options
                 $.ajax({
                     type: opt.ajaxType,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                     url: opt.keepAliveUrl,
                     data: opt.ajaxData
                 });
