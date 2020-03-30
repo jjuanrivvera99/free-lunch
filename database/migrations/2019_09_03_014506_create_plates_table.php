@@ -13,7 +13,7 @@ class CreatePlatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('plate', function (Blueprint $table) {
+        Schema::create('plates', function (Blueprint $table) {
             $table->bigIncrements('plate_id');
             $table->bigInteger('plate_state_id');
             $table->string('name', 100);
@@ -31,6 +31,6 @@ class CreatePlatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plate');
+        Schema::dropIfExists('plates');
     }
 }

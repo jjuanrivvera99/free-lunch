@@ -10,7 +10,7 @@
                 <div class="kt-container ">
                     <div class="kt-subheader__main">
                         <h3 class="kt-subheader__title">Dashboard</h3>
-                        @can('request.create')
+                        @can('requests.create')
                             <span class="kt-subheader__separator kt-subheader__separator--v"></span>
                             <a href="#" data-toggle="modal" data-target="#kt_modal" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
                                 New order

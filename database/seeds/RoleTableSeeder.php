@@ -2,9 +2,35 @@
 
 use Illuminate\Database\Seeder;
 use Caffeinated\Shinobi\Models\Role;
+use Caffeinated\Shinobi\Models\Permission;
 
 class RoleTableSeeder extends Seeder
 {
+    private $managerPermissions = [
+        'requests.list',
+        'requests.create',
+        'plates.list',
+        'grocery.list',
+        'users.profile'
+    ];
+
+    private $kitchenerPermissions = [
+        'requests.list',
+        'requests.assign',
+        'requests.ingredients',
+        'plates.list',
+        'plates.prepare',
+        'users.profile'
+    ];
+
+    private $groceryPermissions = [
+        'requests.list',
+        'requests.buy',
+        'requests.deliver',
+        'grocery.list',
+        'users.profile'
+    ];
+
     /**
      * Run the database seeds.
      *
@@ -33,18 +59,17 @@ class RoleTableSeeder extends Seeder
             'slug' => 'grocery',
         ]);
 
-        Role::find(2)->assignPermission(1);
-        Role::find(2)->assignPermission(2);
-        Role::find(2)->assignPermission(7);
-        Role::find(2)->assignPermission(9);
-        Role::find(3)->assignPermission(1);
-        Role::find(3)->assignPermission(3);
-        Role::find(3)->assignPermission(6);
-        Role::find(3)->assignPermission(7);
-        Role::find(3)->assignPermission(8);
-        Role::find(4)->assignPermission(1);
-        Role::find(4)->assignPermission(4);
-        Role::find(4)->assignPermission(5);
-        Role::find(4)->assignPermission(9);
+        $this->assignPermissions($this->managerPermissions, 'manager');
+        $this->assignPermissions($this->kitchenerPermissions, 'kitchener');
+        $this->assignPermissions($this->groceryPermissions, 'grocery');
+    }
+
+    private function assignPermissions($permissions, $slug)
+    {
+        foreach ($permissions as $permission) {
+            $permission = Permission::whereSlug($permission)->first();
+
+            Role::whereSlug($slug)->first()->assignPermission($permission->id);
+        }
     }
 }

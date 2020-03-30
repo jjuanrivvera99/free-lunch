@@ -14,7 +14,7 @@ class Kitchener extends Model implements Auditable
      *
      * @var string
      */
-    protected $table = 'kitchener';
+    protected $table = 'kitcheners';
 
     /**
      * The primary key associated with the table.

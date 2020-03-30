@@ -2,7 +2,7 @@
 
 
 @php
-	
+
 	$user = Auth::user();
 
 	\JavaScript::put([
@@ -18,8 +18,8 @@
 	<head>
 
 		<meta charset="utf-8" />
-        <title>{{ config('app.name', 'FreeLunch') }}</title>
-        
+        <title>{{ config('app.name', 'FreeLunch') }} | {{ucwords($menu)}}</title>
+
 		<!-- SEO Stuff -->
         {!! SEO::generate() !!}
 
@@ -118,7 +118,7 @@
 								<!-- begin:: Brand -->
 								<div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
 									<div class="kt-header__brand-logo">
-										<a href="demo10/index.html">
+										<a href="/">
 											<img width="181" height="50" alt="Logo" src="/assets/media/logos/alegra-icon-extend.png" class="kt-header__brand-logo-default" />
 										</a>
 									</div>
@@ -161,7 +161,7 @@
 												<!--end: Head -->
 												<div class="tab-content">
 													<div class="tab-pane active show" id="topbar_notifications_notifications" role="tabpanel">
-														
+
 														<div class="kt-grid kt-grid--ver" style="min-height: 200px;">
 															<div class="kt-grid kt-grid--hor kt-grid__item kt-grid__item--fluid kt-grid__item--middle">
 																<div class="kt-grid__item kt-grid__item--middle kt-align-center">
@@ -203,7 +203,7 @@
 										<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
 											<span class="kt-hidden kt-header__topbar-welcome">Hi,</span>
 											<span class="kt-hidden kt-header__topbar-username">Nick</span>
-											<img class="kt-hidden-" alt="Pic" src="/assets/media/users/300_21.jpg" />
+                                            <img class="kt-hidden-" alt="Pic" src="{{ Auth::user()->photo ?? '/img/default-profile.png'}}" />
 											<span class="kt-header__topbar-icon kt-header__topbar-icon--brand kt-hidden"><b>S</b></span>
 										</div>
 										<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-xl">
@@ -211,7 +211,7 @@
 											<!--begin: Head -->
 											<div class="kt-user-card kt-user-card--skin-light kt-notification-item-padding-x">
 												<div class="kt-user-card__avatar">
-													<img class="kt-hidden-" alt="Pic" src="/assets/media/users/300_25.jpg" />
+													<img class="kt-hidden-" alt="Pic" src="{{ Auth::user()->photo ?? '/img/default-profile.png'}}" />
 
 													<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
 													<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold kt-hidden">S</span>
@@ -248,24 +248,46 @@
 												<a href="/"  class="kt-menu__link"><span class="kt-menu__link-text">Orders</span></a>
 											</li>
 
-											@can('plate.list')
+											@can('plates.list')
 												<li class="kt-menu__item @if($menu == 'plates') kt-menu__item--here @endif  kt-menu__item--submenu kt-menu__item--rel"
 													data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a
-														href="/plate/list" class="kt-menu__link"><span
+														href="{{ route('plates.list')}}" class="kt-menu__link"><span
 															class="kt-menu__link-text">Plates</span><i
 															class="kt-menu__ver-arrow la la-angle-right"></i></a>
-													
+
 												</li>
 											@endcan
 
 											@can('grocery.list')
 												<li class="kt-menu__item @if($menu == 'grocery') kt-menu__item--here @endif kt-menu__item--submenu kt-menu__item--rel"
 													data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a
-														href="/grocery" class="kt-menu__link"><span
+														href="{{ route('grocery.list')}}" class="kt-menu__link"><span
 															class="kt-menu__link-text">Grocery</span><i
 															class="kt-menu__ver-arrow la la-angle-right"></i></a>
 												</li>
-											@endcan
+                                            @endcan
+
+                                            @canatleast([
+                                                'users.list',
+                                                'users.profile'
+                                            ])
+                                                <li class="kt-menu__item kt-menu__item--open @if($menu == 'users') kt-menu__item--here @endif kt-menu__item--submenu kt-menu__item--rel"
+                                                    data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a
+                                                        href="javascript:;" class="kt-menu__link kt-menu__toggle"><span
+                                                            class="kt-menu__link-text">Users</span><i
+                                                            class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                                    <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+                                                        <ul class="kt-menu__subnav">
+                                                            <li class="kt-menu__item kt-menu__item--here kt-menu__item--submenu" aria-haspopup="true"><a
+                                                                    href="{{ route('users.profile') }}"
+                                                                    class="kt-menu__link"><i
+                                                                        class="kt-menu__link-icon flaticon-profile-1"></i><span
+                                                                        class="kt-menu__link-text">Profile</span></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            @endcanatleast
 
                                         </ul>
                                     </div>
@@ -284,7 +306,7 @@
 						<div class="kt-container ">
 							<div class="kt-footer__wrapper">
 								<div class="kt-footer__copyright">
-									2019&nbsp;&copy;&nbsp;<a href="/" target="_blank" class="kt-link">Free Lunch</a>
+                                    {{ date('Y') }}&nbsp;&copy;&nbsp;<a href="/" target="_blank" class="kt-link">Free Lunch</a>
 								</div>
 								<div class="kt-footer__menu">
 									<a href="#" target="_blank" class="kt-link">About</a>
@@ -304,7 +326,7 @@
 
         <!-- Modal -->
         @section('modals')
-            
+
 		@show
         <!--begin::Modal-->
 
@@ -356,7 +378,8 @@
 
 		<!--end:: Global Mandatory Vendors -->
 
-		<!--begin:: Global Optional Vendors -->
+        <!--begin:: Global Optional Vendors -->
+        <script src="/assets/vendors/general/owl.carousel/dist/owl.carousel.min.js"></script>
 		<script src="/assets/vendors/general/jquery-form/dist/jquery.form.min.js" type="text/javascript"></script>
 		<script src="/assets/vendors/general/block-ui/jquery.blockUI.js" type="text/javascript"></script>
 		<script src="/assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
@@ -388,17 +411,18 @@
 		<script src="/assets/vendors/general/jquery.repeater/src/jquery.input.js" type="text/javascript"></script>
 		<script src="/assets/vendors/general/jquery.repeater/src/repeater.js" type="text/javascript"></script>
         <script src="/assets/vendors/general/dompurify/dist/purify.js" type="text/javascript"></script>
-        
+
 		<!--end:: Global Optional Vendors -->
-        
-		<!--begin::Global Theme Bundle(used by all pages) -->
+
+        <!--begin::Global Theme Bundle(used by all pages) -->
+        <!-- <script src="/assets/plugins/global/plugins.bundle.js" type="text/javascript"></script> -->
         <script src="/assets/js/demo10/scripts.bundle.js" type="text/javascript"></script>
         <script src="/assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
 
 		@include('globalScripts')
-		
+
 		@section('scripts')
-			
+
 		@show
 
 		<!--end::Global Theme Bundle -->
