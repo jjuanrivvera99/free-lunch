@@ -23,28 +23,75 @@ Route::post('/keep-alive', function () {
 })->name('keep-alive');
 
 //Requests routes
-Route::group(['prefix' => 'request', 'middleware' => ['auth', 'verified']], function () {
-    Route::post('/list', "RequestController@index")->middleware('has.permission:request.list');
-    Route::post('/create', "RequestController@store")->middleware('has.permission:request.create');
-    Route::post('/assign', "RequestController@assign")->middleware('has.permission:request.assign');
-    Route::post('/ingredients', "RequestController@requestIngredients")->middleware('has.permission:request.ingredients');
-    Route::post('/deliver', "GroceryController@deliverRequestIngredients")->middleware('has.permission:request.deliver');
-    Route::post('/buy', 'GroceryController@buyRequestIngredients')->middleware('has.permission:request.buy');
-    Route::post('/prepare', 'RequestController@preparePlate')->middleware('has.permission:plate.prepare');
+Route::group(['prefix' => 'requests', 'middleware' => ['auth', 'verified']], function () {
+    Route::post('/list', "RequestController@index")
+        ->name('requests.list')
+        ->middleware('has.permission:requests.list');
+
+    Route::post('/create', "RequestController@store")
+        ->name('requests.create')
+        ->middleware('has.permission:requests.create');
+
+    Route::post('/assign', "RequestController@assign")
+        ->name('requests.assign')
+        ->middleware('has.permission:requests.assign');
+
+    Route::post('/ingredients', "RequestController@requestIngredients")
+        ->name('requests.ingredients')
+        ->middleware('has.permission:requests.ingredients');
+
+    Route::post('/deliver', "GroceryController@deliverRequestIngredients")
+        ->name('requests.deliver')
+        ->middleware('has.permission:requests.deliver');
+
+    Route::post('/buy', 'GroceryController@buyRequestIngredients')
+        ->name('requests.buy')
+        ->middleware('has.permission:requests.buy');
+
+    Route::post('/prepare', 'RequestController@preparePlate')
+        ->name('requests.prepare')
+        ->middleware('has.permission:plates.prepare');
 });
 
 //Plate routes
-Route::group(['prefix' => 'plate', 'middleware' => ['auth', 'verified']], function () {
-    Route::get('/list', "PlateController@index")->middleware('has.permission:plate.list');
-    Route::post('/datatable', "PlateController@datatable")->middleware('has.permission:plate.list');
-    Route::post('/ingredients', "PlateController@getIngredients")->middleware('has.permission:plate.list');
+Route::group(['prefix' => 'plates', 'middleware' => ['auth', 'verified']], function () {
+    Route::get('/list', "PlateController@index")
+        ->name('plates.list')
+        ->middleware('has.permission:plates.list');
+
+    Route::post('/datatable', "PlateController@datatable")
+        ->name('plates.datatable')
+        ->middleware('has.permission:plates.list');
+
+    Route::post('/ingredients', "PlateController@getIngredients")
+        ->name('plates.ingredients')
+        ->middleware('has.permission:plates.list');
 });
 
 //Market routes
 Route::group(['prefix' => 'grocery', 'middleware' => ['auth', 'verified']], function () {
-    Route::get('/', "GroceryController@index")->middleware('has.permission:grocery.list');
-    Route::post('/buy', "GroceryController@buyIngredients")->middleware('has.permission:grocery.list');
-    Route::post('/datatable', "GroceryController@datatable")->middleware('has.permission:grocery.list');
+    Route::get('/', "GroceryController@index")
+        ->name('grocery.list')
+        ->middleware('has.permission:grocery.list');
+
+    Route::post('/buy', "GroceryController@buyIngredients")
+        ->name('grocery.buy')
+        ->middleware('has.permission:grocery.list');
+
+    Route::post('/datatable', "GroceryController@datatable")
+        ->name('grocery.datatable')
+        ->middleware('has.permission:grocery.list');
+});
+
+//User routes
+Route::group(['prefix' => 'users', 'middleware' => ['auth', 'verified']], function () {
+    Route::get('/profile', "UserController@profile")
+        ->name('users.profile')
+        ->middleware('has.permission:users.profile');
+
+    Route::post('{user}/update', "UserController@update")
+        ->name('users.update')
+        ->middleware('has.permission:users.edit');
 });
 
 Route::get('/permissions', function () {

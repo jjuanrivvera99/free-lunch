@@ -63,9 +63,9 @@ class PlateController extends Controller
      */
     public function getPlateIngredients($plate_id)
     {
-        return Plate::where('plate.plate_id', $plate_id)
-                    ->join('plate_ingredient', 'plate.plate_id', '=', 'plate_ingredient.plate_id')
-                    ->join('ingredient', 'plate_ingredient.ingredient_id', '=', 'ingredient.ingredient_id')
-                    ->select('ingredient.ingredient_id', 'ingredient.name', 'plate_ingredient.qty')->get();
+        return Plate::where('plates.plate_id', $plate_id)
+                    ->join('plate_ingredient', 'plates.plate_id', '=', 'plate_ingredient.plate_id')
+                    ->join('ingredients', 'plate_ingredient.ingredient_id', '=', 'ingredients.ingredient_id')
+                    ->select('ingredients.ingredient_id', 'ingredients.name', 'plate_ingredient.qty')->get();
     }
 }

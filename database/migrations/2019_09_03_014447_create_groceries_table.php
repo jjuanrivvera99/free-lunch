@@ -19,7 +19,7 @@ class CreateGroceriesTable extends Migration
             $table->integer('quantity');
             $table->timestamps();
 
-            $table->foreign('ingredient_id')->references('ingredient_id')->on('ingredient');
+            $table->foreign('ingredient_id')->references('ingredient_id')->on('ingredients');
         });
     }
 

@@ -32,7 +32,7 @@ var KTDatatablesDataSourceAjaxClient = function() {
 		dataTable = table.DataTable({
 			responsive: true,
 			ajax: {
-				url: '/request/list',
+				url: '/requests/list',
 				type: 'POST',
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -70,29 +70,29 @@ var KTDatatablesDataSourceAjaxClient = function() {
 
 						buttons += `<a class="dropdown-item" href="javascript:;"><i class="la la-edit"></i> View</a>`;
 
-						if(can('request.assign') && full.status == 1){
-							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/request/assign" data-state="2" data-request="${requestID}"><i class="la flaticon-user-add"></i> Assign to me</a>`;
+						if(can('requests.assign') && full.status == 1){
+							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/requests/assign" data-state="2" data-request="${requestID}"><i class="la flaticon-user-add"></i> Assign to me</a>`;
 						}
 
-						if(can('request.ingredients') && full.status == 2){
-							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/request/ingredients" data-state="3" data-request="${requestID}"><i class="fa fa-pizza-slice"></i> Request Ingredients</a>`;
+						if(can('requests.ingredients') && full.status == 2){
+							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/requests/ingredients" data-state="3" data-request="${requestID}"><i class="fa fa-pizza-slice"></i> Request Ingredients</a>`;
 						}
 
-						if(can('request.deliver') && full.status == 3){
-							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/request/deliver" data-state="4" data-request="${requestID}"><i class="la flaticon-paper-plane-1"></i> Deliver Ingredients</a>`;
+						if(can('requests.deliver') && full.status == 3){
+							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/requests/deliver" data-state="4" data-request="${requestID}"><i class="la flaticon-paper-plane-1"></i> Deliver Ingredients</a>`;
 						}
 
-						if(can('request.buy')){
-							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/request/buy" data-state="" data-request="${requestID}"><i class="la la-money"></i> Buy Ingredients</a>`;
+						if(can('requests.buy')){
+							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/requests/buy" data-state="" data-request="${requestID}"><i class="la la-money"></i> Buy Ingredients</a>`;
 						}
 
-						if(can('plate.prepare') && full.status == 4){
-							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/request/prepare" data-state="5" data-request="${requestID}"><i class="la flaticon2-checkmark"></i> Prepare</a>`;
+						if(can('plates.prepare') && full.status == 4){
+							buttons += `<a class="dropdown-item actions" href="javascript:;" data-url="/requests/prepare" data-state="5" data-request="${requestID}"><i class="la flaticon2-checkmark"></i> Prepare</a>`;
 						}
 
 						buttons +=`</div>
 							</span>`;
-						
+
 						return buttons;
 					},
 				},
@@ -131,7 +131,7 @@ $(document).on("click",".actions",function(e) {
 	let requestId = $(this).data('request');
 	let url = $(this).data('url');
 	let state = $(this).data('state');
-	
+
 	let data = {
 		request_id: requestId,
 		request_state_id: state,
@@ -159,8 +159,8 @@ $(document).on("click","#submit-request",function(e){
 		}
 	}
 
-	let url = '/request/create';
-	
+	let url = '/requests/create';
+
 	let data = {
 		quantity: val
 	}

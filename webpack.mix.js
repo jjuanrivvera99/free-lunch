@@ -21,5 +21,7 @@ mix.js('resources/js/grocery.js', 'public/js/grocery.js');
 
 mix.js('resources/js/web-socket.js', 'public/js/socket.js');
 
+mix.js('resources/js/profile.js', 'public/js/profile.js');
+
 mix.js(['resources/js/app.js'], 'public/js')
    .sass('resources/sass/app.scss', 'public/css');

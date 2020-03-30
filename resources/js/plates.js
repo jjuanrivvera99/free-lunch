@@ -8,7 +8,7 @@ var KTDatatablesDataSourceAjaxClient = function() {
 		dataTable = table.DataTable({
 			responsive: true,
 			ajax: {
-				url: '/plate/datatable',
+				url: '/plates/datatable',
 				type: 'POST',
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -41,11 +41,11 @@ var KTDatatablesDataSourceAjaxClient = function() {
 											</a>
 											<div class="dropdown-menu dropdown-menu-right">`;
 
-						buttons += `<a class="dropdown-item actions" href="javascript:;" data-toggle="modal" data-target="#kt_modal" data-plate="${id}" data-url="/plate/ingredients"><i class="la la-edit"></i> View Ingredients</a>`;
+						buttons += `<a class="dropdown-item actions" href="javascript:;" data-toggle="modal" data-target="#kt_modal" data-plate="${id}" data-url="/plates/ingredients"><i class="la la-edit"></i> View Ingredients</a>`;
 
 						buttons +=`</div>
 							</span>`;
-						
+
 						return buttons;
 					},
 				},
@@ -67,7 +67,7 @@ var KTDatatablesDataSourceAjaxClient = function() {
 $(document).on("click",".actions",function(e) {
 	let id = $(this).data('plate');
 	let url = $(this).data('url');
-	
+
 	let data = {
 		plate_id: id,
 	}

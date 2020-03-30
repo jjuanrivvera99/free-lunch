@@ -14,7 +14,7 @@ class Ingredient extends Model implements Auditable
      *
      * @var string
      */
-    protected $table = 'ingredient';
+    protected $table = 'ingredients';
 
     /**
      * The primary key associated with the table.

@@ -14,7 +14,7 @@ class Plate extends Model implements Auditable
      *
      * @var string
      */
-    protected $table = 'plate';
+    protected $table = 'plates';
 
     /**
      * The primary key associated with the table.

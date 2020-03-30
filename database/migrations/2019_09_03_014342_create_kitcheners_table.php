@@ -13,7 +13,7 @@ class CreateKitchenersTable extends Migration
      */
     public function up()
     {
-        Schema::create('kitchener', function (Blueprint $table) {
+        Schema::create('kitcheners', function (Blueprint $table) {
             $table->bigIncrements('kitchener_id');
             $table->bigInteger('user_id');
             $table->boolean('busy')->nullable();
@@ -30,6 +30,6 @@ class CreateKitchenersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kitchener');
+        Schema::dropIfExists('kitcheners');
     }
 }

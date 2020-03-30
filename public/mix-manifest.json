@@ -4,6 +4,7 @@
     "/js/login.js": "/js/login.js",
     "/css/app.css": "/css/app.css",
     "/js/plates.js": "/js/plates.js",
+    "/js/profile.js": "/js/profile.js",
     "/js/request.js": "/js/request.js",
     "/js/socket.js": "/js/socket.js"
 }

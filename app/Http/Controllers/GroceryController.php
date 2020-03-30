@@ -37,13 +37,13 @@ class GroceryController extends Controller
     {
         $response = [];
 
-        $response["data"] = Ingredient::join('grocery', 'grocery.ingredient_id', '=', 'ingredient.ingredient_id')
+        $response["data"] = Ingredient::join('grocery', 'grocery.ingredient_id', '=', 'ingredients.ingredient_id')
                                     ->select(
-                                        'ingredient.ingredient_id as ingredient_id',
-                                        'ingredient.name as name',
-                                        'ingredient.description as description',
+                                        'ingredients.ingredient_id as ingredient_id',
+                                        'ingredients.name as name',
+                                        'ingredients.description as description',
                                         'grocery.quantity as quantity'
-                                    )->orderBy('ingredient.ingredient_id')
+                                    )->orderBy('ingredients.ingredient_id')
                                     ->get();
 
         return $response;
@@ -105,13 +105,18 @@ class GroceryController extends Controller
         $request_id        = $request->request_id;
         $requestModel      = RequestModel::findOrFail($request_id);
 
-        if (!\Shinobi::can('request.buy')) {
+        if (!\Shinobi::can('requests.buy')) {
             return abort(403);
         }
 
         $ingredients = $this->getRequestIngredients($request_id);
 
+        if ($ingredients->count() == 0) {
+            return abort(400, 'There is no ingredients to buy');
+        }
+
         foreach ($ingredients as $ingredient) {
+            echo $ingredient->name;
             Market::buyIngredient($ingredient->name);
         }
     }
@@ -119,11 +124,11 @@ class GroceryController extends Controller
     public function getRequestIngredients($request)
     {
 
-        return Ingredient::join('plate_ingredient', 'plate_ingredient.ingredient_id', '=', 'ingredient.ingredient_id')
-                            ->join('plate', 'plate.plate_id', '=', 'plate_ingredient.plate_id')
-                            ->join('request', 'request.plate_id', '=', 'plate.plate_id')
-                            ->select('ingredient.*', 'plate_ingredient.qty')
-                            ->where('request.request_id', $request)
+        return Ingredient::join('plate_ingredient', 'plate_ingredient.ingredient_id', '=', 'ingredients.ingredient_id')
+                            ->join('plates', 'plates.plate_id', '=', 'plate_ingredient.plate_id')
+                            ->join('requests', 'requests.plate_id', '=', 'plates.plate_id')
+                            ->select('ingredients.*', 'plate_ingredient.qty')
+                            ->where('requests.request_id', $request)
                             ->get();
     }
 
