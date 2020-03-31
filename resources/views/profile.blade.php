@@ -276,7 +276,7 @@
                                                     <div class="col-lg-9 col-xl-9">
                                                         <button id="profileSubmitBtn" type="button"
                                                             class="btn btn-success">Submit</button>&nbsp;
-                                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                                        <button onclick="window.history.back();" type="reset" class="btn btn-secondary">Cancel</button>
                                                     </div>
                                                 </div>
                                             </div>

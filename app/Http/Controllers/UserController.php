@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\User\UpdateRequest;
 
 class UserController extends Controller
@@ -72,14 +73,21 @@ class UserController extends Controller
      */
     public function update(UpdateRequest $request, User $user)
     {
+        $oldPhoto = User::find($user->id)->photo;
+
+        $old_path = str_replace('/storage', 'public', $user->photo);
+
         $user->update($request->all());
 
-        if (isset($request->photo)) {
+        if ($request->hasFile('photo')) {
+
+            Storage::delete($old_path);
+
             $name = 'photo.' . $request->photo->extension();
 
-            $path = '/storage/users/' . $user->id . '/img';
+            $path = '/public/users/' . $user->id . '/img';
 
-            $user->photo = '/' . $request->file('photo')->storeAs($path, $name, 'local');
+            $user->photo = str_replace('public', '/storage', $request->file('photo')->storeAs($path, $name));
 
             $user->save();
         }
@@ -105,7 +113,7 @@ class UserController extends Controller
      */
     public function profile()
     {
-        $menu = "users";
+        $menu = "profile";
 
         $user = Auth::user();
 
