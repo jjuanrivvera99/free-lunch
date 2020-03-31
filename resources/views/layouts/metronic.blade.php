@@ -211,13 +211,13 @@
 											<!--begin: Head -->
 											<div class="kt-user-card kt-user-card--skin-light kt-notification-item-padding-x">
 												<div class="kt-user-card__avatar">
-													<img class="kt-hidden-" alt="Pic" src="{{ Auth::user()->photo ?? '/img/default-profile.png'}}" />
+													<img class="kt-hidden-" onclick="window.location.href='/users/profile'" onmouseover="this.style.cursor = 'pointer';" alt="Pic" src="{{ Auth::user()->photo ?? '/img/default-profile.png'}}" />
 
 													<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
 													<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold kt-hidden">S</span>
 												</div>
-												<div class="kt-user-card__name">
-													{{ Auth::user()->name }}
+												<div class="kt-user-card__name" onclick="window.location.href='/users/profile'" onmouseover="this.style.cursor = 'pointer';">
+													{{ Auth::user()->name }}&nbsp;{{ Auth::user()->last_name ?? '' }}
 												</div>
 												<div class="kt-user-card__badge">
 													<a href="{{ route('logout')}}" target="_blank" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-label-primary btn-sm btn-bold btn-font-md">Sign Out</a>
@@ -269,7 +269,9 @@
 
                                             @canatleast([
                                                 'users.list',
-                                                'users.profile'
+                                                'users.edit',
+                                                'users.show',
+                                                'users.delete'
                                             ])
                                                 <li class="kt-menu__item kt-menu__item--open @if($menu == 'users') kt-menu__item--here @endif kt-menu__item--submenu kt-menu__item--rel"
                                                     data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a
@@ -279,15 +281,24 @@
                                                     <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
                                                         <ul class="kt-menu__subnav">
                                                             <li class="kt-menu__item kt-menu__item--here kt-menu__item--submenu" aria-haspopup="true"><a
-                                                                    href="{{ route('users.profile') }}"
+                                                                    href="#"
                                                                     class="kt-menu__link"><i
                                                                         class="kt-menu__link-icon flaticon-profile-1"></i><span
-                                                                        class="kt-menu__link-text">Profile</span></a>
+                                                                        class="kt-menu__link-text">List users</span></a>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                 </li>
                                             @endcanatleast
+
+                                            @if($menu == 'profile')
+                                                <li class="kt-menu__item kt-menu__item--here kt-menu__item--submenu kt-menu__item--rel"
+                                                    data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a
+                                                        href="{{ route('users.profile') }}" class="kt-menu__link"><span
+                                                            class="kt-menu__link-text">Profile</span><i
+                                                            class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                                </li>
+                                            @endif
 
                                         </ul>
                                     </div>
