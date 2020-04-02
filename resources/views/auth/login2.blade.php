@@ -103,9 +103,12 @@
                                                         <span></span>
                                                     </div>
                                                 @enderror
-                                                
+
 												<div class="form-group">
-													<input class="form-control" type="text" placeholder="Full Name" name="name">
+													<input class="form-control" type="text" placeholder="First Name" name="name">
+												</div>
+												<div class="form-group">
+													<input class="form-control" type="text" placeholder="Last Name" name="last_name">
 												</div>
 												<div class="form-group">
 													<input class="form-control" type="text" placeholder="Email" name="email" autocomplete="off">
@@ -218,7 +221,7 @@
 		<script src="./assets/vendors/general/jquery-validation/dist/additional-methods.js" type="text/javascript"></script>
 		<script src="./assets/vendors/custom/js/vendors/jquery-validation.init.js" type="text/javascript"></script>
 		<script src="./assets/vendors/general/toastr/build/toastr.min.js" type="text/javascript"></script>
-		
+
 
 		<!--end:: Global Optional Vendors -->
 

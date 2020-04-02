@@ -15,56 +15,56 @@ class PermissionsTableSeeder extends Seeder
         //1
         Permission::create([
             'name' => 'List Request',
-            'slug' => 'request.list',
+            'slug' => 'requests.list',
             'description' => 'List all requests',
         ]);
 
         //2
         Permission::create([
             'name' => 'Create Request',
-            'slug' => 'request.create',
+            'slug' => 'requests.create',
             'description' => 'Make a request',
         ]);
 
         //3
         Permission::create([
             'name' => 'Request Plate',
-            'slug' => 'request.assign',
+            'slug' => 'requests.assign',
             'description' => 'Request plate to request',
         ]);
 
         //4
         Permission::create([
             'name' => 'Buy plate ingredients',
-            'slug' => 'request.buy',
+            'slug' => 'requests.buy',
             'description' => 'Buy plate ingredients',
         ]);
 
         //5
         Permission::create([
             'name' => 'Deliver ingredients Plate',
-            'slug' => 'request.deliver',
+            'slug' => 'requests.deliver',
             'description' => 'Deliver ingredients Plate',
         ]);
 
         //6
         Permission::create([
             'name' => 'Request ingredients',
-            'slug' => 'request.ingredients',
+            'slug' => 'requests.ingredients',
             'description' => 'Request ingredients',
         ]);
 
         //7
         Permission::create([
             'name' => 'List Plates',
-            'slug' => 'plate.list',
+            'slug' => 'plates.list',
             'description' => 'List plates',
         ]);
 
         //8
         Permission::create([
             'name' => 'Prepare Plate',
-            'slug' => 'plate.prepare',
+            'slug' => 'plates.prepare',
             'description' => 'Prepare Plate',
         ]);
 
@@ -73,6 +73,36 @@ class PermissionsTableSeeder extends Seeder
             'name' => 'View Grocery',
             'slug' => 'grocery.list',
             'description' => 'View Grocery',
+        ]);
+
+        Permission::create([
+            'name' => 'List Users',
+            'slug' => 'users.list',
+            'description' => 'List all users',
+        ]);
+
+        Permission::create([
+            'name' => 'Create User',
+            'slug' => 'users.create',
+            'description' => 'Create a user',
+        ]);
+
+        Permission::create([
+            'name' => 'Show User',
+            'slug' => 'users.show',
+            'description' => 'Show user',
+        ]);
+
+        Permission::create([
+            'name' => 'Edit User',
+            'slug' => 'users.edit',
+            'description' => 'Edit user',
+        ]);
+
+        Permission::create([
+            'name' => 'Profile',
+            'slug' => 'users.profile',
+            'description' => 'View my profile',
         ]);
     }
 }

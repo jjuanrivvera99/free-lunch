@@ -65,7 +65,7 @@ return [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', isset($DATABASE_URL['host']) ? $DATABASE_URL['host'] : ""),
             'port' => env('DB_PORT', isset($DATABASE_URL['port']) ?  $DATABASE_URL['port'] : ""),
-            'database' => env('DB_DATABASE',  isset($DATABASE_URL['path']) ? ltrim($DATABASE_URL['path'], '/') : ""),
+            'database' => env('DB_DATABASE', isset($DATABASE_URL['path']) ? ltrim($DATABASE_URL['path'], '/') : ""),
             'username' => env('DB_USERNAME', isset($DATABASE_URL['user']) ? $DATABASE_URL['user'] : ""),
             'password' => env('DB_PASSWORD', isset($DATABASE_URL['pass']) ? $DATABASE_URL['pass'] : ""),
             'charset' => 'utf8',

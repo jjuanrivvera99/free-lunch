@@ -14,7 +14,7 @@ class Request extends Model implements Auditable
      *
      * @var string
      */
-    protected $table = 'request';
+    protected $table = 'requests';
 
     /**
      * The primary key associated with the table.
