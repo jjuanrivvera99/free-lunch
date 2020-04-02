@@ -18,7 +18,7 @@
 	<head>
 
 		<meta charset="utf-8" />
-        <title>{{ config('app.name', 'FreeLunch') }}</title>
+        <title>{{ config('app.name', 'FreeLunch') }} | {{ucwords($menu)}}</title>
 
 		<!-- SEO Stuff -->
         {!! SEO::generate() !!}
@@ -425,12 +425,15 @@
 
 		<!--end:: Global Optional Vendors -->
 
-		<!--begin::Global Theme Bundle(used by all pages) -->
+        <!--begin::Global Theme Bundle(used by all pages) -->
+        <!-- <script src="/assets/plugins/global/plugins.bundle.js" type="text/javascript"></script> -->
         <script src="/assets/js/demo10/scripts.bundle.js" type="text/javascript"></script>
         <script src="/assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
 		@include('globalScripts')
         <script src="/assets/vendors/custom/vendors/bootstrap-session-timeout/dist/bootstrap-session-timeout.js" type="text/javascript"></script>
         <script src="/assets/js/demo10/pages/components/utils/session-timeout.js" type="text/javascript"></script>
+
+		@include('globalScripts')
 
 		@section('scripts')
 
