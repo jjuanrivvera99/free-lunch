@@ -78,20 +78,30 @@ class UserController extends Controller
         $user->update($request->all());
 
         if ($request->hasFile('photo')) {
+            $this->uploadProfileAvatar($user, $request->file('photo'), $oldPhoto);
+        }
 
-            Storage::delete(str_replace('/s3', '', $oldPhoto));
+        return back();
+    }
 
-            $name = 'photo.' . $request->photo->extension();
+    /**
+     * Update the profile.
+     *
+     * @param  UpdateRequest  $request
+     * @return RedirectResponse
+     */
+    public function updateProfile(UpdateRequest $request)
+    {
+        $user = Auth::user();
 
-            $env = config('app.env');
+        $oldPhoto = $user->photo;
 
-            $path = '/' . $env . '/users/' . $user->id . '/img/';
+        $user->update($request->all());
 
-            $s3 = Storage::disk('s3')->putFileAs($path, $request->file('photo'), $name, 'public');
-
-            $user->photo = "/s3" . $path . $name;
-
-            $user->save();
+        if ($request->hasFile('photo')) {
+            if ($request->hasFile('photo')) {
+                $this->uploadProfileAvatar($user, $request->file('photo'), $oldPhoto);
+            }
         }
 
         return back();
@@ -109,7 +119,7 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Show the profile.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -122,5 +132,27 @@ class UserController extends Controller
         $roles = $user->roles;
 
         return view('profile', compact('menu', 'user', 'roles'));
+    }
+
+    /**
+     * Upload profile avatar
+     *
+     * @return void
+     */
+    public function uploadProfileAvatar($user, $file, $oldPhoto)
+    {
+        Storage::delete(str_replace('/s3', '', $oldPhoto));
+
+        $name = 'photo.' . $file->extension();
+
+        $env = config('app.env');
+
+        $path = '/' . $env . '/users/' . $user->id . '/img/';
+
+        $s3 = Storage::disk('s3')->putFileAs($path, $file, $name, 'public');
+
+        $user->photo = "/s3" . $path . $name;
+
+        $user->save();
     }
 }

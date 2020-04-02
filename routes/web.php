@@ -98,8 +98,10 @@ Route::group(['prefix' => 'grocery', 'middleware' => ['auth', 'verified']], func
 //User routes
 Route::group(['prefix' => 'users', 'middleware' => ['auth', 'verified']], function () {
     Route::get('/profile', "UserController@profile")
-        ->name('users.profile')
-        ->middleware('has.permission:users.profile');
+        ->name('users.profile');
+
+    Route::post('/profile/update', "UserController@updateProfile")
+        ->name('users.updateProfile');
 
     Route::post('{user}/update', "UserController@update")
         ->name('users.update')
