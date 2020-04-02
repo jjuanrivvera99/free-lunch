@@ -75,19 +75,21 @@ class UserController extends Controller
     {
         $oldPhoto = User::find($user->id)->photo;
 
-        $old_path = str_replace('/storage', 'public', $user->photo);
-
         $user->update($request->all());
 
         if ($request->hasFile('photo')) {
 
-            Storage::delete($old_path);
+            Storage::delete(str_replace('/s3', '', $oldPhoto));
 
             $name = 'photo.' . $request->photo->extension();
 
-            $path = '/public/users/' . $user->id . '/img';
+            $env = config('app.env');
 
-            $user->photo = str_replace('public', '/storage', $request->file('photo')->storeAs($path, $name));
+            $path = '/' . $env . '/users/' . $user->id . '/img/';
+
+            $s3 = Storage::disk('s3')->putFileAs($path, $request->file('photo'), $name, 'public');
+
+            $user->photo = "/s3" . $path . $name;
 
             $user->save();
         }

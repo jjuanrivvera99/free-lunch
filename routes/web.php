@@ -15,6 +15,18 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::get('/s3/{file}', function ($file) {
+    $exists = Storage::disk('s3')->exists($file);
+
+    if (!$exists) {
+        return abort(404);
+    }
+
+    $contents = Storage::get($file);
+
+    return $contents;
+})->where('file', '.*');
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
