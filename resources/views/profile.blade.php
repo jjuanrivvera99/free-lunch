@@ -158,7 +158,7 @@
                                         </div>
                                     </div>
 
-                                    <form class="kt-form kt-form--label-right" action="/users/{{ $user->id }}/update" method="POST" enctype='multipart/form-data'>
+                                    <form class="kt-form kt-form--label-right" action="/users/profile/update" method="POST" enctype='multipart/form-data'>
                                         @csrf
                                         <input id="user_id" type="hidden" name="id" value="{{ $user->id }}">
                                         <div class="kt-portlet__body">

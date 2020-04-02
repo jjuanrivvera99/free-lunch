@@ -127,6 +127,9 @@ let KTLoginGeneral = function () {
                     name: {
                         required: true
                     },
+                    last_name: {
+                        required: true
+                    },
                     email: {
                         required: true,
                         email: true
