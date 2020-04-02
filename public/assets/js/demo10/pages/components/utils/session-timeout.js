@@ -6,11 +6,11 @@ var KTSessionTimeoutDemo = function () {
         $.sessionTimeout({
             title: 'Session Timeout Notification',
             message: 'Your session is about to expire.',
-            keepAliveUrl: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/session-timeout/keepalive.php',
-            redirUrl: '?p=page_user_lock_1',
-            logoutUrl: '?p=page_user_login_1',
-            warnAfter: 3000, //warn after 5 seconds
-            redirAfter: 35000, //redirect after 10 secons,
+            keepAliveUrl: '/keep-alive',
+            redirUrl: '/',
+            logoutUrl: '/logout',
+            warnAfter: sessionLifeTimeSeconds - 30000, //warn afters session lifetime subtract 60 seconds
+            redirAfter: sessionLifeTimeSeconds - 10000, //redirect after 10 secons,
             ignoreUserActivity: true,
             countdownMessage: 'Redirecting in {timer} seconds.',
             countdownBar: true
@@ -26,6 +26,6 @@ var KTSessionTimeoutDemo = function () {
 
 }();
 
-jQuery(document).ready(function() {    
+jQuery(document).ready(function() {
     KTSessionTimeoutDemo.init();
 });

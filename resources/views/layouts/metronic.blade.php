@@ -429,6 +429,9 @@
         <!-- <script src="/assets/plugins/global/plugins.bundle.js" type="text/javascript"></script> -->
         <script src="/assets/js/demo10/scripts.bundle.js" type="text/javascript"></script>
         <script src="/assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
+		@include('globalScripts')
+        <script src="/assets/vendors/custom/vendors/bootstrap-session-timeout/dist/bootstrap-session-timeout.js" type="text/javascript"></script>
+        <script src="/assets/js/demo10/pages/components/utils/session-timeout.js" type="text/javascript"></script>
 
 		@include('globalScripts')
 
