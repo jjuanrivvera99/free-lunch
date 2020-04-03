@@ -14,6 +14,7 @@
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "~6.0",
+        "inspector-apm/inspector-laravel": "^4.4",
         "laracasts/utilities": "^3.0",
         "laravel/framework": "5.8.*",
         "laravel/telescope": "^2.0",
