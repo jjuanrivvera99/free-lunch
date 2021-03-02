@@ -130,9 +130,9 @@ return [
         ],
 
         'cache' => [
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD', null),
-            'port' => env('REDIS_PORT', 6379),
+            'host' => env('REDIS_HOST', isset($REDIS_URL['host']) ? $REDIS_URL['host'] : ""),
+            'password' => env('REDIS_PASSWORD', isset($REDIS_URL['password']) ? $REDIS_URL['password'] : ""),
+            'port' => env('REDIS_PORT', isset($REDIS_URL['port']) ? $REDIS_URL['port'] : ""),
             'database' => env('REDIS_CACHE_DB', 1),
         ],
 
