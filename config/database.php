@@ -3,7 +3,6 @@
 $DATABASE_URL = parse_url(env('DATABASE_URL'));
 $REDIS_URL = parse_url(env('REDIS_URL'));
 
-
 return [
 
     /*
