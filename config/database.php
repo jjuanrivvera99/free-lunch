@@ -1,6 +1,7 @@
 <?php
 
 $DATABASE_URL = parse_url(env('DATABASE_URL'));
+$REDIS_URL = parse_url(env('REDIS_URL'));
 
 return [
 
@@ -122,16 +123,16 @@ return [
         ],
 
         'default' => [
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD', null),
-            'port' => env('REDIS_PORT', 6379),
+            'host' => env('REDIS_HOST', isset($REDIS_URL['host']) ? $REDIS_URL['host'] : ""),
+            'password' => env('REDIS_PASSWORD', isset($REDIS_URL['pass']) ? $REDIS_URL['pass'] : ""),
+            'port' => env('REDIS_PORT', isset($REDIS_URL['port']) ? $REDIS_URL['port'] : ""),
             'database' => env('REDIS_DB', 0),
         ],
 
         'cache' => [
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD', null),
-            'port' => env('REDIS_PORT', 6379),
+            'host' => env('REDIS_HOST', isset($REDIS_URL['host']) ? $REDIS_URL['host'] : ""),
+            'password' => env('REDIS_PASSWORD', isset($REDIS_URL['pass']) ? $REDIS_URL['pass'] : ""),
+            'port' => env('REDIS_PORT', isset($REDIS_URL['port']) ? $REDIS_URL['port'] : ""),
             'database' => env('REDIS_CACHE_DB', 1),
         ],
 
