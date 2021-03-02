@@ -124,14 +124,14 @@ return [
 
         'default' => [
             'host' => env('REDIS_HOST', isset($REDIS_URL['host']) ? $REDIS_URL['host'] : ""),
-            'password' => env('REDIS_PASSWORD', isset($REDIS_URL['password']) ? $REDIS_URL['password'] : ""),
+            'password' => env('REDIS_PASSWORD', isset($REDIS_URL['pass']) ? $REDIS_URL['pass'] : ""),
             'port' => env('REDIS_PORT', isset($REDIS_URL['port']) ? $REDIS_URL['port'] : ""),
             'database' => env('REDIS_DB', 0),
         ],
 
         'cache' => [
             'host' => env('REDIS_HOST', isset($REDIS_URL['host']) ? $REDIS_URL['host'] : ""),
-            'password' => env('REDIS_PASSWORD', isset($REDIS_URL['password']) ? $REDIS_URL['password'] : ""),
+            'password' => env('REDIS_PASSWORD', isset($REDIS_URL['pass']) ? $REDIS_URL['pass'] : ""),
             'port' => env('REDIS_PORT', isset($REDIS_URL['port']) ? $REDIS_URL['port'] : ""),
             'database' => env('REDIS_CACHE_DB', 1),
         ],
